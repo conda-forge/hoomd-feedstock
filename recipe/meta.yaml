@@ -37,6 +37,7 @@ requirements:
     - sqlite
     - llvmdev
     - clangdev
+    - tbb-devel
     - tbb
     - libcxx
 
