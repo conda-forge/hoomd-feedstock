@@ -35,20 +35,20 @@ requirements:
     - python
     - numpy
     - sqlite
-    - llvmdev
-    - clangdev
+    - llvmdev =6.0.1
+    - clangdev =6.0.1
     - tbb-devel
     - tbb
-    - libcxx
+    - libcxx =6.0.1
 
   run:
     - python
     - numpy
     - sqlite
-    - llvmdev
-    - clangdev
+    - llvmdev =6.0.1
+    - clangdev =6.0.1
     - tbb
-    - libcxx
+    - libcxx =6.0.1
 
 test:
   imports:
