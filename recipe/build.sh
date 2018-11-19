@@ -18,7 +18,7 @@ cmake ../ \
       -DENABLE_CUDA=off \
       -DBUILD_TESTING=on \
       -DENABLE_TBB=on \
-      -DBUILD_JIT=on \
+      -DBUILD_JIT=off \
       -GNinja
 
 # compile
