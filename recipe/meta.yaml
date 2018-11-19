@@ -35,20 +35,20 @@ requirements:
     - python
     - numpy
     - sqlite
-    - llvmdev
-    - clangdev
+#    - llvmdev   # llvm, clang, and libcxx temporarily disabled due to libcxx conda-forge package problems.
+#    - clangdev
     - tbb-devel
     - tbb
-    - libcxx
+#    - libcxx
 
   run:
     - python
     - numpy
     - sqlite
-    - llvmdev
-    - clangdev
+#    - llvmdev
+#    - clangdev
     - tbb
-    - libcxx
+#    - libcxx
 
 test:
   imports:
