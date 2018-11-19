@@ -34,7 +34,6 @@ requirements:
   host:
     - python
     - numpy
-    - sqlite
 #    - llvmdev   # llvm, clang, and libcxx temporarily disabled due to libcxx conda-forge package problems.
 #    - clangdev
     - tbb-devel
@@ -44,7 +43,6 @@ requirements:
   run:
     - python
     - numpy
-    - sqlite
 #    - llvmdev
 #    - clangdev
     - tbb
