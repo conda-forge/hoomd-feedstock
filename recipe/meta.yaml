@@ -1,6 +1,6 @@
 {% set name = "hoomd" %}
-{% set version = "2.4.0" %}
-{% set sha256 = "052fffd0ebcc43a86fa530ff54054ae183dcd5c404957e41f7d83f633e39569a" %}
+{% set version = "2.4.1" %}
+{% set sha256 = "0763c0f701f70439667256b67581b70052877330006cadd7b4eae7655fc913e9" %}
 
 package:
   name: {{ name }}
@@ -34,19 +34,19 @@ requirements:
   host:
     - python
     - numpy
-    - llvmdev < 7.0.0
-    - clangdev < 7.0.0
+    - llvmdev
+    - clangdev
     - tbb-devel
     - tbb
-    - libcxx < 7.0.0
+    - libcxx
 
   run:
     - python
     - numpy
-    - llvmdev < 7.0.0
-    - clangdev < 7.0.0
+    - llvmdev
+    - clangdev
     - tbb
-    - libcxx < 7.0.0
+    - libcxx
 
 test:
   imports:
