@@ -1,6 +1,6 @@
 {% set name = "hoomd" %}
-{% set version = "2.3.5" %}
-{% set sha256 = "81941c2a5407127dda00f5ffe39bc0faecb5f462cb34b860df71391038cc2268" %}
+{% set version = "2.4.1" %}
+{% set sha256 = "0763c0f701f70439667256b67581b70052877330006cadd7b4eae7655fc913e9" %}
 
 package:
   name: {{ name }}
@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1000
   # upstream package does not support windows
   skip: true  # [win]
 
@@ -34,7 +34,6 @@ requirements:
   host:
     - python
     - numpy
-    - sqlite
     - llvmdev
     - clangdev
     - tbb-devel
@@ -44,7 +43,6 @@ requirements:
   run:
     - python
     - numpy
-    - sqlite
     - llvmdev
     - clangdev
     - tbb
@@ -73,3 +71,4 @@ about:
 extra:
   recipe-maintainers:
     - joaander
+    - bdice
