@@ -9,6 +9,9 @@ if [ "$(uname)" == "Darwin" ]; then
     # prevent cmake from using the conda package clangdev for building
     export CC=/usr/bin/gcc
     export CXX=/usr/bin/g++
+    export LINUX_ADDITIONAL=""
+else
+    export LINUX_ADDITIONAL="-DDL_LIB=/usr/lib/libdl.sl"
 fi
 
 cmake ../ \
