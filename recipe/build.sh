@@ -11,7 +11,7 @@ if [ "$(uname)" == "Darwin" ]; then
     export CXX=/usr/bin/g++
     export LINUX_ADDITIONAL=""
 else
-    export LINUX_ADDITIONAL="-DDL_LIB=/usr/lib/libdl.sl -DUTIL_LIB=/usr/lib/libutil.so"
+    export LINUX_ADDITIONAL='-DDL_LIB="" -DUTIL_LIB=""'
 fi
 
 cmake ../ \
