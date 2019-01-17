@@ -34,17 +34,13 @@ requirements:
   host:
     - python
     - numpy
-    - llvmdev
     - tbb-devel
     - tbb
 
   run:
     - python
     - numpy
-    - llvmdev
-    - clangdev
     - tbb
-    - libcxx
 
 test:
   imports:
