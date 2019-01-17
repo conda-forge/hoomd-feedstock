@@ -38,10 +38,10 @@ requirements:
     - python
     - numpy
     - llvmdev >=7.0.0
-    - clangdev >= 7.0.0
+    - clangdev >=7.0.0
     - tbb-devel
     - tbb
-    - libcxx >= 7.0.0
+    - libcxx >=7.0.0
 
   run:
     - python
@@ -49,7 +49,7 @@ requirements:
     - llvmdev >=7.0.0
     - clangdev >=7.0.0
     - tbb
-    - libcxx >= 7.0.0
+    - libcxx >=7.0.0
 
 test:
   imports:
