@@ -30,23 +30,26 @@ requirements:
     - cmake
     - pkg-config
     - ninja
+    - llvmdev >=7.0.0
+    - clangdev >=7.0.0
+    - libcxx >=7.0.0
 
   host:
     - python
     - numpy
-    - llvmdev
-    - clangdev
+    - llvmdev >=7.0.0
+    - clangdev >= 7.0.0
     - tbb-devel
     - tbb
-    - libcxx
+    - libcxx >= 7.0.0
 
   run:
     - python
     - numpy
-    - llvmdev
-    - clangdev
+    - llvmdev >=7.0.0
+    - clangdev >=7.0.0
     - tbb
-    - libcxx
+    - libcxx >= 7.0.0
 
 test:
   imports:
