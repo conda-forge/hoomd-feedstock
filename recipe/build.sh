@@ -28,8 +28,5 @@ cmake ../ \
 # compile
 ninja -j${CPU_COUNT}
 
-# execute unit tests
-ctest --output-on-failure
-
 # install
 ninja install
