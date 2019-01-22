@@ -9,6 +9,9 @@ if [ "$(uname)" == "Darwin" ]; then
     # prevent cmake from using the conda package clangdev for building
     export CC=/usr/bin/gcc
     export CXX=/usr/bin/g++
+    export LINUX_ADDITIONAL=""
+else
+    export LINUX_ADDITIONAL='-DDL_LIB= -DUTIL_LIB='
 fi
 
 cmake ../ \
@@ -18,14 +21,12 @@ cmake ../ \
       -DENABLE_CUDA=off \
       -DBUILD_TESTING=on \
       -DENABLE_TBB=on \
-      -DBUILD_JIT=on \
+      -DBUILD_JIT=off \
+      ${LINUX_ADDITIONAL} \
       -GNinja
 
 # compile
 ninja -j${CPU_COUNT}
-
-# execute unit tests
-ctest --output-on-failure
 
 # install
 ninja install
