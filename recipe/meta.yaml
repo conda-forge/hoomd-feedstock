@@ -60,7 +60,7 @@ about:
     to execute the job and it takes care of the rest. Python job scripts give you unlimited flexibility to create custom
     initialization routines, control simulation parameters, and perform in situ analysis.
   doc_url: https://hoomd-blue.readthedocs.io
-  dev_url: https://bitbucket.org/glotzer/{{ name }}
+  dev_url: https://glotzerlab.com/glotzerlab/{{ name }}
 
 extra:
   recipe-maintainers:
