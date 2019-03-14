@@ -1,6 +1,6 @@
 {% set name = "hoomd" %}
-{% set version = "2.5.0" %}
-{% set sha256 = "7ddeb1946eb21ec2554d42727854e4d79823080d5d6e7f91f985c81db1238497" %}
+{% set version = "2.5.1" %}
+{% set sha256 = "07fcc83f7fb48373fe485bf7b8ac71cb79a2a6c918da3498dd64a37f2dc2c964" %}
 
 package:
   name: {{ name }}
@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   # upstream package does not support windows
   skip: true  # [win]
 
