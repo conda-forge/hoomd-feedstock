@@ -13,8 +13,9 @@ source:
 
 build:
   number: 0
-  # upstream package does not support windows
+  # upstream package does not support windows or py27
   skip: true  # [win]
+  skip: true  # [py27]
 
   rpaths:
     - lib/
