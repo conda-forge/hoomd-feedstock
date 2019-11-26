@@ -1,6 +1,6 @@
 {% set name = "hoomd" %}
-{% set version = "2.8.0" %}
-{% set sha256 = "f3cd733bb9a8932a30d65927897eaff894bf5ddb7a95c507ee47e124a7a4f541" %}
+{% set version = "2.8.1" %}
+{% set sha256 = "9c8899eee4fd8ba48df2d9b9f85ed4d7c00ec288225dbcce6316c16d46798331" %}
 
 package:
   name: {{ name }}
@@ -19,11 +19,9 @@ build:
 
   rpaths:
     - lib/
+    - lib/python3.8/site-packages/{{ name }}  # [py38]
+    - lib/python3.7/site-packages/{{ name }}  # [py37]
     - lib/python3.6/site-packages/{{ name }}  # [py36]
-    - lib/python3.5/site-packages/{{ name }}  # [py35]
-    - lib/python3.4/site-packages/{{ name }}  # [py34]
-    - lib/python3.3/site-packages/{{ name }}  # [py33]
-    - lib/python2.7/site-packages/{{ name }}  # [py27]
 
 requirements:
   build:
