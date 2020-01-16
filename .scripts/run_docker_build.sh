@@ -7,6 +7,11 @@
 
 set -xeo pipefail
 
+echo "****************"
+echo "External IP:"
+nslookup myip.opendns.com resolver1.opendns.com
+echo "****************"
+
 THISDIR="$( cd "$( dirname "$0" )" >/dev/null && pwd )"
 PROVIDER_DIR="$(basename $THISDIR)"
 
