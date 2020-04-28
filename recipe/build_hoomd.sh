@@ -15,15 +15,17 @@ else
 fi
 
 CUDA_SUPPORT="off"
+CUDA_CMAKE_OPTIONS=""
 if [[ $1 == "gpu" ]]; then
     CUDA_SUPPORT="on"
+    CUDA_CMAKE_OPTIONS="-DCUDA_TOOLKIT_ROOT_DIR=${CUDA_HOME}"
 fi
 
 cmake ../ \
       -DCMAKE_INSTALL_PREFIX=${SP_DIR} \
       -DPYTHON_EXECUTABLE=${PYTHON} \
       -DENABLE_MPI=off \
-      -DENABLE_CUDA=${CUDA_SUPPORT} \
+      -DENABLE_CUDA=${CUDA_SUPPORT} ${CUDA_CMAKE_OPTIONS} \
       -DBUILD_TESTING=on \
       -DENABLE_TBB=on \
       -DBUILD_JIT=off \
