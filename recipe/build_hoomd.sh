@@ -19,6 +19,8 @@ CUDA_CMAKE_OPTIONS=""
 if [[ $1 == "gpu" ]]; then
     CUDA_SUPPORT="on"
     CUDA_CMAKE_OPTIONS="-DCUDA_TOOLKIT_ROOT_DIR=${CUDA_HOME}"
+    # remove -std=c++17 from CXXFLAGS for compatibility with nvcc
+    export CXXFLAGS="$(echo $CXXFLAGS | sed -e 's/ -std=[^ ]*//')"
 fi
 
 cmake ../ \
