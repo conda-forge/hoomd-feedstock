@@ -21,8 +21,8 @@ build:
   skip: true  # [win]
   skip: true  # [py27]
   string: "{{ processor }}_py{{ py }}h{{ PKG_HASH }}_{{ build }}"
-  script: "bash ${RECIPE_DIR}/build.sh gpu"  # [linux64 and cuda_compiler_version != "None"]
-  script: "bash ${RECIPE_DIR}/build.sh"  # [not linux64 or cuda_compiler_version == "None"]
+  script: "bash ${RECIPE_DIR}/build_hoomd.sh gpu"  # [linux64 and cuda_compiler_version != "None"]
+  script: "bash ${RECIPE_DIR}/build_hoomd.sh"  # [not linux64 or cuda_compiler_version == "None"]
 
   rpaths:
     - lib/
