@@ -34,6 +34,7 @@ requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
+    - cudatoolkit-dev  # [linux64 and cuda_compiler_version != "None"]
     - cmake
     - pkg-config
     - ninja
