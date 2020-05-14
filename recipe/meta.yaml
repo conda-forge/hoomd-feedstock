@@ -1,6 +1,10 @@
 {% set name = "hoomd" %}
 {% set version = "2.9.0" %}
+{% set build = 1 %}
 {% set sha256 = "e004da89657894e51c91359d85156debad1725291b69278c4eeb89401b0933da" %}
+{% set processor = "cpu" if cuda_compiler_version == "None" else "gpu" %}  # [linux64]
+{% set processor = "cpu" %}  # [not linux64]
+
 
 package:
   name: {{ name }}
@@ -12,10 +16,13 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: {{ build }}
   # upstream package does not support windows or py27
   skip: true  # [win]
   skip: true  # [py27]
+  string: "{{ processor }}_py{{ py }}h{{ PKG_HASH }}_{{ build }}"
+  script: "bash ${RECIPE_DIR}/build_hoomd.sh gpu"  # [linux64 and cuda_compiler_version != "None"]
+  script: "bash ${RECIPE_DIR}/build_hoomd.sh"  # [not linux64 or cuda_compiler_version == "None"]
 
   rpaths:
     - lib/
@@ -26,6 +33,7 @@ build:
 requirements:
   build:
     - {{ compiler('cxx') }}
+    - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
     - cmake
     - pkg-config
     - ninja
