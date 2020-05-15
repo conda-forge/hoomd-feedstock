@@ -1,6 +1,6 @@
 {% set name = "hoomd" %}
 {% set version = "2.9.0" %}
-{% set build = 1 %}
+{% set build = 2 %}
 {% set sha256 = "e004da89657894e51c91359d85156debad1725291b69278c4eeb89401b0933da" %}
 {% set processor = "cpu" if cuda_compiler_version == "None" else "gpu" %}  # [linux64]
 {% set processor = "cpu" %}  # [not linux64]
@@ -56,7 +56,7 @@ test:
   - hoomd.hpmc
 
 about:
-  home: http://glotzerlab.engin.umich.edu/hoomd-blue/
+  home: https://glotzerlab.engin.umich.edu/hoomd-blue/
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
@@ -67,7 +67,7 @@ about:
     to execute the job and it takes care of the rest. Python job scripts give you unlimited flexibility to create custom
     initialization routines, control simulation parameters, and perform in situ analysis.
   doc_url: https://hoomd-blue.readthedocs.io
-  dev_url: https://glotzerlab.com/glotzerlab/{{ name }}
+  dev_url: https://github.com/glotzerlab/hoomd-blue/
 
 extra:
   recipe-maintainers:
