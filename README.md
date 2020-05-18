@@ -1,7 +1,7 @@
 About hoomd
 ===========
 
-Home: http://glotzerlab.engin.umich.edu/hoomd-blue/
+Home: https://glotzerlab.engin.umich.edu/hoomd-blue/
 
 Package license: BSD-3-Clause
 
