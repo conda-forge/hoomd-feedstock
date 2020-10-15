@@ -35,14 +35,16 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
     - cmake
-    - pkg-config
     - ninja
+    - pkg-config
 
   host:
-    - python
+    - eigen
     - numpy
-    - tbb-devel
+    - pybind11
+    - python
     - tbb
+    - tbb-devel
 
   run:
     - python
