@@ -1,7 +1,7 @@
 channel_sources:
 - conda-forge,defaults
 channel_targets:
-- conda-forge main
+- conda-forge hoomd_dev
 cuda_compiler:
 - nvcc
 cuda_compiler_version:
@@ -25,3 +25,5 @@ target_platform:
 zip_keys:
 - - cuda_compiler_version
   - docker_image
+- - python
+  - numpy
