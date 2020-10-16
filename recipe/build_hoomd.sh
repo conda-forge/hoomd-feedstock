@@ -33,7 +33,7 @@ cmake ../ \
       -DENABLE_TBB=on \
       -DBUILD_JIT=off \
       ${LINUX_ADDITIONAL} \
-      -GNinja
+      -GNinja || { cat CMakeFiles/CMakeOutput.log; exit 1; }
 
 # compile
 ninja -j${CPU_COUNT}
