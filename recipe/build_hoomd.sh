@@ -1,3 +1,5 @@
+set -x
+
 mkdir -p build-conda
 cd build-conda
 rm -rf ./*
@@ -28,7 +30,8 @@ cmake ../ \
       -DCMAKE_INSTALL_PREFIX=${SP_DIR} \
       -DPYTHON_EXECUTABLE=${PYTHON} \
       -DENABLE_MPI=off \
-      -DENABLE_GPU="${CUDA_SUPPORT} ${CUDA_CMAKE_OPTIONS}" \
+      -DENABLE_GPU=${CUDA_SUPPORT} \
+      ${CUDA_CMAKE_OPTIONS} \
       -DBUILD_TESTING=on \
       -DENABLE_TBB=on \
       -DBUILD_JIT=off \
