@@ -1,0 +1,3 @@
+# Target dev channel
+channel_targets:
+  - conda-forge hoomd_dev

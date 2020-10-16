@@ -18,7 +18,7 @@ CUDA_SUPPORT="off"
 CUDA_CMAKE_OPTIONS=""
 if [[ $1 == "gpu" ]]; then
     CUDA_SUPPORT="on"
-    CUDA_CMAKE_OPTIONS="-DCUDA_TOOLKIT_ROOT_DIR=${CUDA_HOME}"
+    CUDA_CMAKE_OPTIONS="-DCMAKE_CUDA_COMPILER=${CUDA_HOME}/bin/nvcc -DCMAKE_CUDA_HOST_COMPILER=${CXX}"
     # remove -std=c++17 from CXXFLAGS for compatibility with nvcc
     export CXXFLAGS="$(echo $CXXFLAGS | sed -e 's/ -std=[^ ]*//')"
 fi
@@ -27,7 +27,7 @@ cmake ../ \
       -DCMAKE_INSTALL_PREFIX=${SP_DIR} \
       -DPYTHON_EXECUTABLE=${PYTHON} \
       -DENABLE_MPI=off \
-      -DENABLE_CUDA=${CUDA_SUPPORT} ${CUDA_CMAKE_OPTIONS} \
+      -DENABLE_GPU=${CUDA_SUPPORT} ${CUDA_CMAKE_OPTIONS} \
       -DBUILD_TESTING=on \
       -DENABLE_TBB=on \
       -DBUILD_JIT=off \

@@ -1,18 +1,19 @@
 {% set name = "hoomd" %}
-{% set version = "2.9.3" %}
+{% set tag_version = "3.0.0-beta.1" %}
+{% set conda_version = "3.0.0dev1" %}
 {% set build = 0 %}
-{% set sha256 = "f714dded7a2e73cf5ecb3b9c2f0b0635a1a0640b7fb368a23a2f8849984e4f69" %}
+{% set sha256 = "1c997b8b5720c5a3963bd8ba051fc99051c168a5f98dc537691c82e70cae54dd" %}
 {% set processor = "cpu" if cuda_compiler_version == "None" else "gpu" %}  # [linux64]
 {% set processor = "cpu" %}  # [not linux64]
 
 
 package:
   name: {{ name }}
-  version: "{{ version }}"
+  version: "{{ conda_version }}"
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://github.com/glotzerlab/hoomd-blue/releases/download/v{{ version }}/{{ name }}-v{{ version }}.tar.gz
+  fn: {{ name }}-{{ tag_version }}.tar.gz
+  url: https://github.com/glotzerlab/hoomd-blue/releases/download/v{{ tag_version }}/{{ name }}-v{{ tag_version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
@@ -34,14 +35,16 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
     - cmake
-    - pkg-config
     - ninja
+    - pkg-config
 
   host:
-    - python
+    - eigen
     - numpy
-    - tbb-devel
+    - pybind11
+    - python
     - tbb
+    - tbb-devel
 
   run:
     - python
