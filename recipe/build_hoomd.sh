@@ -1,5 +1,3 @@
-set -x
-
 mkdir -p build-conda
 cd build-conda
 rm -rf ./*
@@ -21,7 +19,6 @@ CUDA_CMAKE_OPTIONS=""
 if [[ $1 == "gpu" ]]; then
     CUDA_SUPPORT="on"
     CUDA_CMAKE_OPTIONS="-DCMAKE_CUDA_COMPILER=${CUDA_HOME}/bin/nvcc -DCMAKE_CUDA_HOST_COMPILER=${CXX}"
-    echo "CUDA_CMAKE_OPTIONS=${CUDA_CMAKE_OPTIONS}"
     # remove -std=c++17 from CXXFLAGS for compatibility with nvcc
     export CXXFLAGS="$(echo $CXXFLAGS | sed -e 's/ -std=[^ ]*//')"
 fi
@@ -35,7 +32,7 @@ cmake ../ \
       -DENABLE_TBB=on \
       -DBUILD_JIT=off \
       ${LINUX_ADDITIONAL} \
-      -GNinja || { cat CMakeFiles/CMakeOutput.log; exit 1; }
+      -GNinja
 
 # compile
 ninja -j${CPU_COUNT}
