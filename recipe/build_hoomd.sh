@@ -19,6 +19,7 @@ CUDA_CMAKE_OPTIONS=""
 if [[ $1 == "gpu" ]]; then
     CUDA_SUPPORT="on"
     CUDA_CMAKE_OPTIONS="-DCMAKE_CUDA_COMPILER=\"${CUDA_HOME}/bin/nvcc -ccbin $(dirname ${CXX})\""
+    echo "CUDA_CMAKE_OPTIONS=${CUDA_CMAKE_OPTIONS}"
     # remove -std=c++17 from CXXFLAGS for compatibility with nvcc
     export CXXFLAGS="$(echo $CXXFLAGS | sed -e 's/ -std=[^ ]*//')"
 fi
