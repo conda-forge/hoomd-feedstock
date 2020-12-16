@@ -1,3 +1,5 @@
+cdt_name:
+- cos6
 channel_sources:
 - conda-forge,defaults
 channel_targets:
@@ -9,9 +11,9 @@ cuda_compiler_version:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '7'
+- '9'
 docker_image:
-- condaforge/linux-anvil-cuda:10.0
+- quay.io/condaforge/linux-anvil-cuda:10.0
 numpy:
 - '1.16'
 pin_run_as_build:
