@@ -18,8 +18,8 @@ source:
 
 build:
   number: {{ build }}
-  # Upstream package does not support Windows or Python < 3.6
-  skip: true  # [win or py<36]
+  # Upstream package does not support Windows, Python < 3.6, or PyPy
+  skip: true  # [win or py<36 or python_impl == "pypy"]
   string: "{{ processor }}_py{{ py }}h{{ PKG_HASH }}_{{ build }}"
   script: "bash ${RECIPE_DIR}/build_hoomd.sh gpu"  # [linux64 and cuda_compiler_version != "None"]
   script: "bash ${RECIPE_DIR}/build_hoomd.sh"  # [not linux64 or cuda_compiler_version == "None"]
