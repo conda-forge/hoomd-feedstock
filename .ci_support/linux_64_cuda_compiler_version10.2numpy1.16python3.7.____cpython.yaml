@@ -11,7 +11,7 @@ cuda_compiler_version:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '9'
+- '7'
 docker_image:
 - quay.io/condaforge/linux-anvil-cuda:10.2
 numpy:
@@ -22,10 +22,14 @@ pin_run_as_build:
     max_pin: x.x
 python:
 - 3.7.* *_cpython
+python_impl:
+- cpython
 target_platform:
 - linux-64
 zip_keys:
-- - cuda_compiler_version
+- - cdt_name
+  - cuda_compiler_version
   - docker_image
-- - python
-  - numpy
+- - numpy
+  - python
+  - python_impl
