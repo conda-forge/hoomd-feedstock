@@ -1,6 +1,6 @@
 {% set name = "hoomd" %}
 {% set version = "2.9.3" %}
-{% set build = 2 %}
+{% set build = 3 %}
 {% set sha256 = "f714dded7a2e73cf5ecb3b9c2f0b0635a1a0640b7fb368a23a2f8849984e4f69" %}
 {% set processor = "cpu" if cuda_compiler_version == "None" else "gpu" %}  # [linux64]
 {% set processor = "cpu" %}  # [not linux64]
@@ -17,17 +17,18 @@ source:
 
 build:
   number: {{ build }}
-  # upstream package does not support windows or py27
-  skip: true  # [win or py27]
+  # upstream package does not support Windows, Python < 3.5, or PyPy
+  skip: true  # [win or py<35 or python_impl == "pypy"]
   string: "{{ processor }}_py{{ py }}h{{ PKG_HASH }}_{{ build }}"
   script: "bash ${RECIPE_DIR}/build_hoomd.sh gpu"  # [linux64 and cuda_compiler_version != "None"]
   script: "bash ${RECIPE_DIR}/build_hoomd.sh"  # [not linux64 or cuda_compiler_version == "None"]
 
   rpaths:
     - lib/
-    - lib/python3.8/site-packages/{{ name }}  # [py38]
-    - lib/python3.7/site-packages/{{ name }}  # [py37]
-    - lib/python3.6/site-packages/{{ name }}  # [py36]
+    - lib/python3.9/site-packages/{{ name }}  # [py==39]
+    - lib/python3.8/site-packages/{{ name }}  # [py==38]
+    - lib/python3.7/site-packages/{{ name }}  # [py==37]
+    - lib/python3.6/site-packages/{{ name }}  # [py==36]
 
 requirements:
   build:
