@@ -25,6 +25,7 @@ build:
 
   rpaths:
     - lib/
+    - lib/python3.9/site-packages/{{ name }}  # [py39]
     - lib/python3.8/site-packages/{{ name }}  # [py38]
     - lib/python3.7/site-packages/{{ name }}  # [py37]
     - lib/python3.6/site-packages/{{ name }}  # [py36]
