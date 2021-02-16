@@ -1,8 +1,8 @@
 {% set name = "hoomd" %}
-{% set tag_version = "3.0.0-beta.3" %}
-{% set conda_version = "3.0.0dev3" %}
+{% set tag_version = "3.0.0-beta.4" %}
+{% set conda_version = "3.0.0dev4" %}
 {% set build = 0 %}
-{% set sha256 = "2fbfcd822d2727cd589abf8add7eedc5ea8df6979daac69b6a77319baca0eacc" %}
+{% set sha256 = "7186d60eb7b30473e5790efdd6a2831c8c92db00f95b929e44e6f67b3e4c2143" %}
 {% set processor = "cpu" if cuda_compiler_version == "None" else "gpu" %}  # [linux64]
 {% set processor = "cpu" %}  # [not linux64]
 
@@ -48,6 +48,7 @@ requirements:
     - tbb-devel
 
   run:
+    - __cuda >={{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
     - python
     - numpy
     - tbb
