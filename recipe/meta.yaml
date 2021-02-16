@@ -46,7 +46,7 @@ requirements:
     - tbb
 
   run:
-    - __cuda >={{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
+    - __cuda >={{ cuda_compiler_version }}  # [linux64 and cuda_compiler_version != "None"]
     - python
     - numpy
     - tbb
