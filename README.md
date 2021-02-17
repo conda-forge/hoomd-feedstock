@@ -36,62 +36,6 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64_cuda_compiler_version10.0numpy1.16python3.6.____cpythonpython_implcpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version10.0numpy1.16python3.6.____cpythonpython_implcpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_64_cuda_compiler_version10.0numpy1.16python3.7.____cpythonpython_implcpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version10.0numpy1.16python3.7.____cpythonpython_implcpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_64_cuda_compiler_version10.0numpy1.16python3.8.____cpythonpython_implcpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version10.0numpy1.16python3.8.____cpythonpython_implcpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_64_cuda_compiler_version10.0numpy1.19python3.9.____cpythonpython_implcpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version10.0numpy1.19python3.9.____cpythonpython_implcpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_64_cuda_compiler_version10.1numpy1.16python3.6.____cpythonpython_implcpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version10.1numpy1.16python3.6.____cpythonpython_implcpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_64_cuda_compiler_version10.1numpy1.16python3.7.____cpythonpython_implcpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version10.1numpy1.16python3.7.____cpythonpython_implcpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_64_cuda_compiler_version10.1numpy1.16python3.8.____cpythonpython_implcpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version10.1numpy1.16python3.8.____cpythonpython_implcpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_64_cuda_compiler_version10.1numpy1.19python3.9.____cpythonpython_implcpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version10.1numpy1.19python3.9.____cpythonpython_implcpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
               <td>linux_64_cuda_compiler_version10.2numpy1.16python3.6.____cpythonpython_implcpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=master">
@@ -148,31 +92,59 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_version9.2numpy1.16python3.6.____cpythonpython_implcpython</td>
+              <td>linux_64_cuda_compiler_version11.1numpy1.16python3.6.____cpythonpython_implcpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version9.2numpy1.16python3.6.____cpythonpython_implcpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version11.1numpy1.16python3.6.____cpythonpython_implcpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_version9.2numpy1.16python3.7.____cpythonpython_implcpython</td>
+              <td>linux_64_cuda_compiler_version11.1numpy1.16python3.7.____cpythonpython_implcpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version9.2numpy1.16python3.7.____cpythonpython_implcpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version11.1numpy1.16python3.7.____cpythonpython_implcpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_version9.2numpy1.16python3.8.____cpythonpython_implcpython</td>
+              <td>linux_64_cuda_compiler_version11.1numpy1.16python3.8.____cpythonpython_implcpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version9.2numpy1.16python3.8.____cpythonpython_implcpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version11.1numpy1.16python3.8.____cpythonpython_implcpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_version9.2numpy1.19python3.9.____cpythonpython_implcpython</td>
+              <td>linux_64_cuda_compiler_version11.1numpy1.19python3.9.____cpythonpython_implcpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version9.2numpy1.19python3.9.____cpythonpython_implcpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version11.1numpy1.19python3.9.____cpythonpython_implcpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_64_cuda_compiler_version11.2numpy1.16python3.6.____cpythonpython_implcpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version11.2numpy1.16python3.6.____cpythonpython_implcpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_64_cuda_compiler_version11.2numpy1.16python3.7.____cpythonpython_implcpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version11.2numpy1.16python3.7.____cpythonpython_implcpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_64_cuda_compiler_version11.2numpy1.16python3.8.____cpythonpython_implcpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version11.2numpy1.16python3.8.____cpythonpython_implcpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_64_cuda_compiler_version11.2numpy1.19python3.9.____cpythonpython_implcpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version11.2numpy1.19python3.9.____cpythonpython_implcpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
