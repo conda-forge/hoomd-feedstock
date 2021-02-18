@@ -48,7 +48,7 @@ requirements:
     - tbb-devel
 
   run:
-    - __cuda >={{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
+    #- __cuda >={{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
     - python
     - numpy
     - tbb
