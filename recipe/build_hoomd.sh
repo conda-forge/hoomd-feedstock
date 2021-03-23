@@ -8,7 +8,7 @@ export TBB_LINK=${PREFIX}/lib
 
 if [ "$(uname)" == "Darwin" ]; then
     # temporary hack. Remove when upstream supports the new pybind11 mode: https://pybind11.readthedocs.io/en/stable/cmake/index.html#new-findpython-mode
-   export ADDITIONAL_OPTIONS="-DPYBIND11_FINDPYTHON=ON"
+   export ADDITIONAL_OPTIONS="-DPYBIND11_FINDPYTHON=ON -DPython_EXECUTABLE=${PYTHON}"
 else
     export ADDITIONAL_OPTIONS='-DDL_LIB= -DUTIL_LIB='
 fi
@@ -22,10 +22,7 @@ if [[ $1 == "gpu" ]]; then
     export CXXFLAGS="$(echo $CXXFLAGS | sed -e 's/ -std=[^ ]*//')"
 fi
 
-echo "CMake ARGS: ${CMAKE_ARGS}"
-
 cmake ../ \
-      ${CMAKE_ARGS}
       -DCMAKE_INSTALL_PREFIX=${SP_DIR} \
       -DPYTHON_EXECUTABLE=${PYTHON} \
       -DENABLE_MPI=off \
