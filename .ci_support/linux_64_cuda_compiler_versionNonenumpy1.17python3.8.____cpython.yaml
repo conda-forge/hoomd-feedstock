@@ -15,17 +15,21 @@ cxx_compiler_version:
 docker_image:
 - quay.io/condaforge/linux-anvil-comp7
 numpy:
-- '1.16'
+- '1.17'
 pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.7.* *_cpython
+- 3.8.* *_cpython
 python_impl:
 - cpython
 target_platform:
 - linux-64
+tbb:
+- '2020'
+tbb_devel:
+- '2020'
 zip_keys:
 - - cdt_name
   - cuda_compiler_version
