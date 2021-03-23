@@ -3,11 +3,12 @@ cd build-conda
 rm -rf ./*
 
 export CPATH=${PREFIX}/include
+export CMAKE_PREFIX_PATH=${PREFIX}
 export TBB_LINK=${PREFIX}/lib
 
 if [ "$(uname)" == "Darwin" ]; then
     # temporary hack. Remove when upstream supports the new pybind11 mode: https://pybind11.readthedocs.io/en/stable/cmake/index.html#new-findpython-mode
-   export ADDITIONAL_OPTIONS="-DPYBIND11_FINDPYTHON=ON -DPython_EXECUTABLE=${PYTHON}"
+   export ADDITIONAL_OPTIONS="-DPYBIND11_FINDPYTHON=ON"
 else
     export ADDITIONAL_OPTIONS='-DDL_LIB= -DUTIL_LIB='
 fi
