@@ -6,9 +6,10 @@ export CPATH=${PREFIX}/include
 export TBB_LINK=${PREFIX}/lib
 
 if [ "$(uname)" == "Darwin" ]; then
-    export LINUX_ADDITIONAL=""
+    # temporary hack. Remove when upstream supports the new pybind11 mode: https://pybind11.readthedocs.io/en/stable/cmake/index.html#new-findpython-mode
+    export ADDITIONAL_OPTIONS="-DPYBIND11_FINDPYTHON=ON -DPYTHON_LIBRARIES=${PREFIX}/lib/libpython${PY_VER}.dylib"
 else
-    export LINUX_ADDITIONAL='-DDL_LIB= -DUTIL_LIB='
+    export ADDITIONAL_OPTIONS='-DDL_LIB= -DUTIL_LIB='
 fi
 
 CUDA_SUPPORT="off"
@@ -28,7 +29,7 @@ cmake ../ \
       -DBUILD_TESTING=on \
       -DENABLE_TBB=on \
       -DBUILD_JIT=off \
-      ${LINUX_ADDITIONAL} \
+      ${ADDITIONAL_OPTIONS} \
       -GNinja
 
 # compile
