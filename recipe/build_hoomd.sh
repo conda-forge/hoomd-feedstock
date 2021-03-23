@@ -7,7 +7,7 @@ export TBB_LINK=${PREFIX}/lib
 
 if [ "$(uname)" == "Darwin" ]; then
     # temporary hack. Remove when upstream supports the new pybind11 mode: https://pybind11.readthedocs.io/en/stable/cmake/index.html#new-findpython-mode
-    export ADDITIONAL_OPTIONS="-DPYBIND11_FINDPYTHON=ON -DPYTHON_LIBRARIES=${PREFIX}/lib/libpython${PY_VER}.dylib"
+   export ADDITIONAL_OPTIONS="-DPYBIND11_FINDPYTHON=ON -DPYTHON_LIBRARIES=${PREFIX}/lib/libpython${PY_VER}.dylib -DPython_EXECUTABLE=${PYTHON}"
 else
     export ADDITIONAL_OPTIONS='-DDL_LIB= -DUTIL_LIB='
 fi

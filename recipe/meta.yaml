@@ -36,7 +36,7 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
     # MacOS cross compilation support requires CMake 3.15 or newer
-    - cmake >=3.15.0
+    - cmake >=3.16.0
     - ninja
     - pkg-config
 
