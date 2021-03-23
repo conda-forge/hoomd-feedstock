@@ -2,13 +2,6 @@ mkdir -p build-conda
 cd build-conda
 rm -rf ./*
 
-if [ "$(uname)" == "Darwin" ]; then
-    # temporary hack. Remove when upstream supports the new pybind11 mode: https://pybind11.readthedocs.io/en/stable/cmake/index.html#new-findpython-mode
-   export ADDITIONAL_OPTIONS="-DPYBIND11_FINDPYTHON=ON"
-else
-    export ADDITIONAL_OPTIONS='-DDL_LIB= -DUTIL_LIB='
-fi
-
 CUDA_SUPPORT="off"
 CUDA_CMAKE_OPTIONS=""
 if [[ $1 == "gpu" ]]; then
@@ -22,9 +15,14 @@ echo CMake Args: ${CMAKE_ARGS}
 
 cmake ../ \
       ${CMAKE_ARGS} \
+      -DPYBIND11_FINDPYTHON=ON \
+      -DPython_EXECUTABLE=${PYTHON} \
+      -DPython_ROOT_DIR=${PREFIX} \
+      -DPython_FIND_STRATEGY=LOCATION \
+      -DPython_FIND_REGISTRY=NEVER \
+      -DPython_FIND_FRAMEWORK=NEVER \
       -Dlibgetar_DIR=../hoomd/extern/libgetar \
       -DCMAKE_INSTALL_PREFIX=${SP_DIR} \
-      -DPYTHON_EXECUTABLE=${PYTHON} \
       -DENABLE_MPI=off \
       -DENABLE_GPU=${CUDA_SUPPORT} ${CUDA_CMAKE_OPTIONS} \
       -DBUILD_TESTING=off \
