@@ -22,7 +22,10 @@ if [[ $1 == "gpu" ]]; then
     export CXXFLAGS="$(echo $CXXFLAGS | sed -e 's/ -std=[^ ]*//')"
 fi
 
+echo "CMake ARGS: ${CMAKE_ARGS}"
+
 cmake ../ \
+      ${CMAKE_ARGS}
       -DCMAKE_INSTALL_PREFIX=${SP_DIR} \
       -DPYTHON_EXECUTABLE=${PYTHON} \
       -DENABLE_MPI=off \
