@@ -15,12 +15,7 @@ echo CMake Args: ${CMAKE_ARGS}
 
 cmake ../ \
       ${CMAKE_ARGS} \
-      -DPYBIND11_FINDPYTHON=ON \
-      -DPython_EXECUTABLE=${PYTHON} \
-      -DPython_ROOT_DIR=${PREFIX} \
-      -DPython_FIND_STRATEGY=LOCATION \
-      -DPython_FIND_REGISTRY=NEVER \
-      -DPython_FIND_FRAMEWORK=NEVER \
+      -DPYTHON_EXECUTABLE=${PYTHON} \
       -Dlibgetar_DIR=../hoomd/extern/libgetar \
       -DCMAKE_INSTALL_PREFIX=${SP_DIR} \
       -DENABLE_MPI=off \
