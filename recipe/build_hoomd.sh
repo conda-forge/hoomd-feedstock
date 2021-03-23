@@ -2,18 +2,6 @@ mkdir -p build-conda
 cd build-conda
 rm -rf ./*
 
-export CPATH=${PREFIX}/include
-export TBB_LINK=${PREFIX}/lib
-
-if [ "$(uname)" == "Darwin" ]; then
-    # prevent cmake from using the conda package clangdev for building
-    export CC=/usr/bin/gcc
-    export CXX=/usr/bin/g++
-    export LINUX_ADDITIONAL=""
-else
-    export LINUX_ADDITIONAL='-DDL_LIB= -DUTIL_LIB='
-fi
-
 CUDA_SUPPORT="off"
 CUDA_CMAKE_OPTIONS=""
 if [[ $1 == "gpu" ]]; then
@@ -23,15 +11,19 @@ if [[ $1 == "gpu" ]]; then
     export CXXFLAGS="$(echo $CXXFLAGS | sed -e 's/ -std=[^ ]*//')"
 fi
 
+echo CMake Args: ${CMAKE_ARGS}
+
 cmake ../ \
-      -DCMAKE_INSTALL_PREFIX=${SP_DIR} \
+      ${CMAKE_ARGS} \
       -DPYTHON_EXECUTABLE=${PYTHON} \
+      -Dlibgetar_DIR=../hoomd/extern/libgetar \
+      -DCMAKE_INSTALL_PREFIX=${SP_DIR} \
       -DENABLE_MPI=off \
       -DENABLE_GPU=${CUDA_SUPPORT} ${CUDA_CMAKE_OPTIONS} \
-      -DBUILD_TESTING=on \
+      -DBUILD_TESTING=off \
       -DENABLE_TBB=on \
       -DBUILD_JIT=off \
-      ${LINUX_ADDITIONAL} \
+      ${ADDITIONAL_OPTIONS} \
       -GNinja
 
 # compile

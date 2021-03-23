@@ -1,5 +1,5 @@
 cdt_name:
-- cos6
+- cos7
 channel_sources:
 - conda-forge,defaults
 channel_targets:
@@ -26,6 +26,10 @@ python_impl:
 - cpython
 target_platform:
 - linux-64
+tbb:
+- '2021'
+tbb_devel:
+- '2021'
 zip_keys:
 - - cdt_name
   - cuda_compiler_version
