@@ -55,10 +55,14 @@ requirements:
     - tbb
 
 test:
+  requires:
+    - pytest
   imports:
-  - hoomd
-  - hoomd.md
-  - hoomd.hpmc
+    - hoomd
+    - hoomd.md
+    - hoomd.hpmc
+  commands:
+    - pytest --pyargs hoomd -v
 
 about:
   home: https://glotzerlab.engin.umich.edu/hoomd-blue/
