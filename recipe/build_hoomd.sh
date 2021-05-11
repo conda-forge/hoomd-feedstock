@@ -11,11 +11,8 @@ if [[ $1 == "gpu" ]]; then
     export CXXFLAGS="$(echo $CXXFLAGS | sed -e 's/ -std=[^ ]*//')"
 fi
 
-echo CMake Args: ${CMAKE_ARGS}
-
 cmake ../ \
       ${CMAKE_ARGS} \
-      -DPYTHON_EXECUTABLE=${PYTHON} \
       -Dlibgetar_DIR=../hoomd/extern/libgetar \
       -DCMAKE_INSTALL_PREFIX=${SP_DIR} \
       -DENABLE_MPI=off \
@@ -23,7 +20,6 @@ cmake ../ \
       -DBUILD_TESTING=off \
       -DENABLE_TBB=on \
       -DBUILD_JIT=off \
-      ${ADDITIONAL_OPTIONS} \
       -GNinja
 
 # compile

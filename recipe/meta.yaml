@@ -1,7 +1,7 @@
 {% set name = "hoomd" %}
 {% set tag_version = "3.0.0-beta.5" %}
 {% set conda_version = "3.0.0dev5" %}
-{% set build = 0 %}
+{% set build = 1 %}
 {% set sha256 = "957b352c66c726a83c83147b80d115c3b20559007a01d5dd70fc58d0d40fcdd7" %}
 {% set processor = "cpu" if cuda_compiler_version == "None" else "gpu" %}  # [linux64]
 {% set processor = "cpu" %}  # [not linux64]
@@ -33,6 +33,10 @@ build:
 
 requirements:
   build:
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - numpy                                  # [build_platform != target_platform]
+    - pybind11                               # [build_platform != target_platform]
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
     # MacOS cross compilation support requires CMake 3.15 or newer
