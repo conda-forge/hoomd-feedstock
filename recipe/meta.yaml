@@ -1,8 +1,8 @@
 {% set name = "hoomd" %}
-{% set tag_version = "3.0.0-beta.9" %}
-{% set conda_version = "3.0.0dev9" %}
+{% set tag_version = "3.0.0-beta.10" %}
+{% set conda_version = "3.0.0dev10" %}
 {% set build = 0 %}
-{% set sha256 = "94fe7395cf76fbb23943053a7778c8e13ee23a4e143f150432dc4882ddfefc68" %}
+{% set sha256 = "f03490041ecf46e6428f9ea6c6b9b6c11bfb3c580c1af3fd1723888abccedc3c" %}
 {% set processor = "cpu" if cuda_compiler_version == "None" else "gpu" %}  # [linux64]
 {% set processor = "cpu" %}  # [not linux64]
 
@@ -66,9 +66,8 @@ test:
     - hoomd
     - hoomd.md
     - hoomd.hpmc
-  # Remove in the next release.
-  # commands:
-  #   - pytest --pyargs hoomd -v
+  commands:
+    - pytest --pyargs hoomd -v
 
 about:
   home: https://glotzerlab.engin.umich.edu/hoomd-blue/
