@@ -1,7 +1,7 @@
 {% set processor = "cpu" %}
 {% set name = "hoomd" %}
 {% set version = "2.9.7" %}
-{% set build = 0 %}
+{% set build = 1 %}
 {% set sha256 = "022b1406038ed7dbf308f411bc499a8bfab93b2b06b4a8af0b49c55bb74b7810" %}
 {% set processor = "cpu" if cuda_compiler_version == "None" else "gpu" %}  # [linux64]
 {% set processor = "cpu" %}  # [not linux64]
@@ -26,6 +26,7 @@ build:
 
   rpaths:
     - lib/
+    - lib/python3.10/site-packages/{{ name }}  # [py==310]
     - lib/python3.9/site-packages/{{ name }}  # [py==39]
     - lib/python3.8/site-packages/{{ name }}  # [py==38]
     - lib/python3.7/site-packages/{{ name }}  # [py==37]
