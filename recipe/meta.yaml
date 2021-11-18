@@ -1,8 +1,8 @@
 {% set name = "hoomd" %}
-{% set tag_version = "3.0.0-beta.10" %}
-{% set conda_version = "3.0.0dev10" %}
+{% set tag_version = "3.0.0-beta.11" %}
+{% set conda_version = "3.0.0dev11" %}
 {% set build = 0 %}
-{% set sha256 = "f03490041ecf46e6428f9ea6c6b9b6c11bfb3c580c1af3fd1723888abccedc3c" %}
+{% set sha256 = "d9416b6e7a415b6a539a4b7d482c370d7141331a8ee244f3bcf73de0e53548d3" %}
 {% set processor = "cpu" if cuda_compiler_version == "None" else "gpu" %}  # [linux64]
 {% set processor = "cpu" %}  # [not linux64]
 
@@ -26,6 +26,7 @@ build:
 
   rpaths:
     - lib/
+    - lib/python3.10/site-packages/{{ name }}  # [py==310]
     - lib/python3.9/site-packages/{{ name }}  # [py==39]
     - lib/python3.8/site-packages/{{ name }}  # [py==38]
     - lib/python3.7/site-packages/{{ name }}  # [py==37]
