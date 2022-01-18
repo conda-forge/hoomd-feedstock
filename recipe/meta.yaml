@@ -1,8 +1,8 @@
 {% set name = "hoomd" %}
-{% set tag_version = "3.0.0-beta.12" %}
-{% set conda_version = "3.0.0dev12" %}
+{% set tag_version = "3.0.0-beta.13" %}
+{% set conda_version = "3.0.0dev13" %}
 {% set build = 0 %}
-{% set sha256 = "f2aead735abc4dd46b4bb69198a66bbcfe7016675b4a4e227958074ff7e7e34b" %}
+{% set sha256 = "9bd863b51667c0283a84db5c8674f2cf9f03c4196aabdb9af1874e9397201cad" %}
 {% set processor = "cpu" if cuda_compiler_version == "None" else "gpu" %}  # [linux64]
 {% set processor = "cpu" %}  # [not linux64]
 
