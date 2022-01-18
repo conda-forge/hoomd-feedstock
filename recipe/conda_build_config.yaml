@@ -1,3 +1,9 @@
 # Target dev channel
 channel_targets:
   - conda-forge hoomd_dev
+
+# 10.14 required for some C++17 features used in TBB
+MACOSX_DEPLOYMENT_TARGET:  # [osx and x86_64]
+  - "10.14"                # [osx and x86_64]
+MACOSX_SDK_VERSION:        # [osx and x86_64]
+  - "10.14"                # [osx and x86_64]
