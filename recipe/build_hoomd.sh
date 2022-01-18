@@ -11,6 +11,9 @@ if [[ $1 == "gpu" ]]; then
     export CXXFLAGS="$(echo $CXXFLAGS | sed -e 's/ -std=[^ ]*//')"
 fi
 
+# work around 'operator delete' is unavailable on macOS: https://conda-forge.org/docs/maintainer/knowledge_base.html#newer-c-features-with-old-sdk
+export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
+
 cmake ../ \
       ${CMAKE_ARGS} \
       -Dlibgetar_DIR=../hoomd/extern/libgetar \
@@ -19,7 +22,7 @@ cmake ../ \
       -DENABLE_GPU=${CUDA_SUPPORT} ${CUDA_CMAKE_OPTIONS} \
       -DBUILD_TESTING=off \
       -DENABLE_TBB=on \
-      -DBUILD_JIT=off \
+      -DENABLE_LLVM=off \
       -GNinja
 
 # compile
