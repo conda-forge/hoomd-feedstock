@@ -25,12 +25,7 @@ cmake ../ \
       -GNinja
 
 # compile
-if [[ $1 == "gpu" ]]; then
-    # GPU builds have high memory requirements
-    ninja -j1
-else
-    ninja -j${CPU_COUNT}
-fi
+ninja -j${CPU_COUNT}
 
 # install
 ninja install
