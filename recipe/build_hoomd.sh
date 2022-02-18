@@ -16,7 +16,6 @@ export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
 
 cmake ../ \
       ${CMAKE_ARGS} \
-      -Dlibgetar_DIR=../hoomd/extern/libgetar \
       -DCMAKE_INSTALL_PREFIX=${SP_DIR} \
       -DENABLE_MPI=off \
       -DENABLE_GPU=${CUDA_SUPPORT} ${CUDA_CMAKE_OPTIONS} \
@@ -26,7 +25,12 @@ cmake ../ \
       -GNinja
 
 # compile
-ninja -j${CPU_COUNT}
+if [[ $1 == "gpu" ]]; then
+    # GPU builds have high memory requirements
+    ninja -j1
+else
+    ninja -j${CPU_COUNT}
+fi
 
 # install
 ninja install
