@@ -52,6 +52,7 @@ requirements:
     - python
     - tbb
     - tbb-devel
+    - pybind11-abi
 
   run:
     - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
