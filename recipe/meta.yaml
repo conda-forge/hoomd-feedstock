@@ -40,8 +40,8 @@ requirements:
     - pybind11                               # [build_platform != target_platform]
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
-    # HOOMD-blue triggers a compiler bug in gcc 10.3
-    - gcc >=11.2.0  # [linux64 and cuda_compiler_version != "None"]
+    # HOOMD-blue triggers a compiler bug in gcc 10.3, the current default on conda-forge
+    - gcc =9.4.0  # [linux64 and cuda_compiler_version != "None"]
     # MacOS cross compilation support requires CMake 3.15 or newer
     - cmake >=3.16.0
     - ninja
