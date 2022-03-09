@@ -9,7 +9,7 @@ cuda_compiler_version:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '11'
+- '12'
 macos_machine:
 - arm64-apple-darwin20.0.0
 numpy:
@@ -18,6 +18,8 @@ pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
+pybind11_abi:
+- '4'
 python:
 - 3.8.* *_cpython
 python_impl:
