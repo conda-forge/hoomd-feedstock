@@ -1,0 +1,22 @@
+# 10.14 required for some C++17 features used in TBB
+MACOSX_DEPLOYMENT_TARGET:  # [osx and x86_64]
+  - "10.14"                # [osx and x86_64]
+MACOSX_SDK_VERSION:        # [osx and x86_64]
+  - "10.14"                # [osx and x86_64]
+
+# HOOMD triggers a bug in gcc 10.3 that causes the compiler to seg fault
+cxx_compiler_version:          # [unix]
+  - 12                         # [osx]
+  - 10                         # [linux]
+  - 7                          # [os.environ.get("CF_CUDA_ENABLED", "False") == "True" and linux64]
+  - 9                          # [os.environ.get("CF_CUDA_ENABLED", "False") == "True" and linux64]
+  - 9                          # [os.environ.get("CF_CUDA_ENABLED", "False") == "True" and linux64]
+  - 9                          # [os.environ.get("CF_CUDA_ENABLED", "False") == "True" and linux64]
+
+c_compiler_version:          # [unix]
+  - 12                       # [osx]
+  - 10                       # [linux]
+  - 7                        # [os.environ.get("CF_CUDA_ENABLED", "False") == "True" and linux64]
+  - 9                        # [os.environ.get("CF_CUDA_ENABLED", "False") == "True" and linux64]
+  - 9                        # [os.environ.get("CF_CUDA_ENABLED", "False") == "True" and linux64]
+  - 9                        # [os.environ.get("CF_CUDA_ENABLED", "False") == "True" and linux64]
