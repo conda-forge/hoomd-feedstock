@@ -1,14 +1,14 @@
 {% set name = "hoomd" %}
-{% set version = "3.0.0-beta.14" %}
+{% set version = "3.0.0" %}
 {% set build = 0 %}
-{% set sha256 = "40782a736256f74b49c36e75cc1404adce8151891dcf23d6ca45cd4763dae4d2" %}
+{% set sha256 = "2798e55a79555d759e6e3f4af56cce03df2d03bf9cd0df4d7ea142d0b3edeb30" %}
 {% set processor = "cpu" if cuda_compiler_version == "None" else "gpu" %}  # [linux64]
 {% set processor = "cpu" %}  # [not linux64]
 
 
 package:
   name: {{ name }}
-  version: "3.0.0"
+  version: {{ version }}
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
