@@ -12,9 +12,11 @@ package:
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://github.com/glotzerlab/hoomd-blue/releases/download/v{{ version }}/{{ name }}-v{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+#  fn: {{ name }}-{{ version }}.tar.gz
+#  url: https://github.com/glotzerlab/hoomd-blue/releases/download/v{{ version }}/{{ name }}-v{{ version }}.tar.gz
+#  sha256: {{ sha256 }}
+  git_url: https://github.com/glotzerlab/hoomd-blue
+  git_rev: fix/find-clang
 
 build:
   number: {{ build }}
@@ -65,7 +67,10 @@ requirements:
     - tbb
     - {{ pin_compatible('libclang-cpp') }}
     - libstdcxx-devel_linux-64  # [linux64]
+    - sysroot_linux-64  # [linux64]
     - libcxx
+    - clang
+    - clangxx
 
 test:
   requires:

@@ -25,7 +25,7 @@ cmake ../ \
       -GNinja
 
 # compile
-ninja -j${CPU_COUNT}
+ninja
 
 # install
 ninja install
