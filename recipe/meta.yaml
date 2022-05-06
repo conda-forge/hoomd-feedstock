@@ -64,6 +64,8 @@ requirements:
     - numpy
     - tbb
     - {{ pin_compatible('libclang-cpp') }}
+    - libstdcxx-devel_linux-64  # [linux64]
+    - libcxx
 
 test:
   requires:
