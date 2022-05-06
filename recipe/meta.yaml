@@ -63,6 +63,7 @@ requirements:
     - python
     - numpy
     - tbb
+    - {{ pin_compatible('libclang-cpp') }}
 
 test:
   requires:
