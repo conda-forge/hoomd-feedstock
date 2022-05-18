@@ -21,11 +21,11 @@ cmake ../ \
       -DENABLE_GPU=${CUDA_SUPPORT} ${CUDA_CMAKE_OPTIONS} \
       -DBUILD_TESTING=off \
       -DENABLE_TBB=on \
-      -DENABLE_LLVM=off \
+      -DENABLE_LLVM=on \
       -GNinja
 
 # compile
-ninja -j${CPU_COUNT}
+ninja
 
 # install
 ninja install
