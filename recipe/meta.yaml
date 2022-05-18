@@ -12,9 +12,9 @@ package:
   version: {{ version }}
 
 source:
- fn: {{ name }}-{{ version }}.tar.gz
- url: https://github.com/glotzerlab/hoomd-blue/releases/download/v{{ version }}/{{ name }}-v{{ version }}.tar.gz
- sha256: {{ sha256 }}
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://github.com/glotzerlab/hoomd-blue/releases/download/v{{ version }}/{{ name }}-v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
 
 build:
   number: {{ build }}
