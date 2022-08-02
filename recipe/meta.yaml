@@ -54,8 +54,8 @@ requirements:
     - tbb
     - tbb-devel
     - pybind11-abi
-    - llvmdev
-    - clangdev
+    - llvmdev 14.0.6
+    - clangdev 14.0.6
 
   run:
     - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
@@ -66,9 +66,9 @@ requirements:
     - {{ pin_compatible('libclang-cpp') }}
     - libstdcxx-devel_linux-64  # [linux64]
     - sysroot_linux-64  # [linux64]
-    - libcxx
-    - clang
-    - clangxx
+    - libcxx 14.0.6
+    - clang 14.0.6
+    - clangxx 14.0.6
 
 test:
   requires:
