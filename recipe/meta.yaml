@@ -54,6 +54,9 @@ requirements:
     - tbb
     - tbb-devel
     - pybind11-abi
+    # Pin all LLVM and clang packages to the latest version with each build.
+    # This ensures that HOOMD can find the corresponding header files which
+    # conda installs to version specific directories.
     - llvmdev 14.0.6
     - clangdev 14.0.6
 
@@ -63,7 +66,7 @@ requirements:
     - python
     - numpy
     - tbb
-    - {{ pin_compatible('libclang-cpp') }}
+    - libclang-cpp 14.0.6
     - libstdcxx-devel_linux-64  # [linux64]
     - sysroot_linux-64  # [linux64]
     - libcxx 14.0.6
