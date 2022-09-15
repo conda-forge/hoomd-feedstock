@@ -22,6 +22,7 @@ cmake ../ \
       -DBUILD_TESTING=off \
       -DENABLE_TBB=on \
       -DENABLE_LLVM=on \
+      -DPLUGINS="" \
       -GNinja
 
 # compile
