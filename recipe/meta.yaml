@@ -1,8 +1,8 @@
 {% set processor = "cpu" %}
 {% set name = "hoomd" %}
-{% set version = "3.6.0" %}
+{% set version = "3.7.0" %}
 {% set build = 1 %}
-{% set sha256 = "a7e4ce4c01078da061b84f2f1be65119b2f887a7a34ce5ee4932206cfa12ea2d" %}
+{% set sha256 = "be124582b0786f317073d6ed26ab917f7018f6e70576c7c55e94dfaf2e6127ab" %}
 {% set processor = "cpu" if cuda_compiler_version == "None" else "gpu" %}  # [linux64]
 {% set processor = "cpu" %}  # [not linux64]
 
@@ -26,6 +26,7 @@ build:
 
   rpaths:
     - lib/
+    - lib/python3.11/site-packages/{{ name }}  # [py==311]
     - lib/python3.10/site-packages/{{ name }}  # [py==310]
     - lib/python3.9/site-packages/{{ name }}  # [py==39]
     - lib/python3.8/site-packages/{{ name }}  # [py==38]
@@ -57,8 +58,8 @@ requirements:
     # Pin all LLVM and clang packages to the latest version with each build.
     # This ensures that HOOMD can find the corresponding header files which
     # conda installs to version specific directories.
-    - llvmdev 14.0.6
-    - clangdev 14.0.6
+    - llvmdev 15.0.5
+    - clangdev 15.0.5
 
   run:
     - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
@@ -69,9 +70,9 @@ requirements:
     - libclang-cpp 14.0.6
     - libstdcxx-devel_linux-64  # [linux64]
     - sysroot_linux-64  # [linux64]
-    - libcxx 14.0.6
-    - clang 14.0.6
-    - clangxx 14.0.6
+    - libcxx 15.0.5
+    - clang 15.0.5
+    - clangxx 15.0.5
 
 test:
   requires:
