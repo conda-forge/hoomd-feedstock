@@ -7,4 +7,4 @@ MACOSX_SDK_VERSION:        # [osx and x86_64]
 # Build only for CUDA 11.2+
 cuda_compiler_version_min:
   - None  # [not (linux64 or ppc64le or aarch64)]
-  - 11.2  # [linux64 or ppc64le or aarch64]
+  - 12.0  # [linux64 or ppc64le or aarch64]
