@@ -1,0 +1,88 @@
+diff --git a/CMake/hoomd/FindCUDALibs.cmake b/CMake/hoomd/FindCUDALibs.cmake
+index 06e3dee4d..4897c8b74 100644
+--- a/CMake/hoomd/FindCUDALibs.cmake
++++ b/CMake/hoomd/FindCUDALibs.cmake
+@@ -16,6 +16,7 @@ if (HIP_PLATFORM STREQUAL "nvcc")
+         INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}"
+       )
+     endif()
++    find_package_message(CUDALibs "Found cudart: ${CUDA_cudart_LIBRARY}" "[CUDA_cudart_LIBRARY]")
+     list(APPEND REQUIRED_CUDA_LIB_VARS "CUDA_cudart_LIBRARY")
+ else()
+     # define empty target
+@@ -32,7 +33,7 @@ if (HIP_PLATFORM STREQUAL "nvcc")
+         INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}"
+       )
+     endif()
+-    list(APPEND REQUIRED_CUDA_LIB_VARS CUDA_cudadevrt_LIBRARY)
++    find_package_message(CUDALibs "Found cudavert: ${CUDA_cudavert_LIBRARY}" "[CUDA_cudavert_LIBRARY]")
+ else()
+     # separable compilation not supported with HIP
+     add_library(CUDA::cudadevrt UNKNOWN IMPORTED)
+@@ -49,6 +50,7 @@ if (HIP_PLATFORM STREQUAL "nvcc")
+         INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}"
+       )
+     endif()
++    find_package_message(CUDALibs "Found nvrtc: ${CUDA_nvrtc_LIBRARY}" "[CUDA_nvrtc_LIBRARY]")
+     list(APPEND REQUIRED_CUDA_LIB_VARS CUDA_nvrtc_LIBRARY)
+ else()
+     # separable compilation not supported with HIP
+@@ -89,6 +91,7 @@ if (HIP_PLATFORM STREQUAL "nvcc")
+         INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}"
+       )
+     endif()
++    find_package_message(CUDALibs "Found cuda: ${CUDA_cuda_LIBRARY}" "[CUDA_cuda_LIBRARY]")
+     list(APPEND REQUIRED_CUDA_LIB_VARS "CUDA_cuda_LIBRARY")
+ else()
+     # define empty target
+@@ -107,13 +110,14 @@ if (HIP_PLATFORM STREQUAL "nvcc")
+         INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}"
+       )
+     endif()
++    find_package_message(CUDALibs "Found cufft: ${CUDA_cufft_LIBRARY}" "[CUDA_cufft_LIBRARY]")
+     list(APPEND REQUIRED_CUDA_LIB_VARS CUDA_cufft_LIBRARY)
+ else()
+     # cufft API is supported natively by HIP
+     add_library(CUDA::cufft UNKNOWN IMPORTED)
+ endif()
+ 
+-if (HIP_PLATFORM STREQUAL "nvcc")
++if (HIP_PLATFORM STREQUAL "nvcc" AND ENABLE_NVTOOLS)
+     find_library(CUDA_nvToolsExt_LIBRARY nvToolsExt HINTS ${CUDA_LIB_PATH})
+     mark_as_advanced(CUDA_nvToolsExt_LIBRARY)
+     if(CUDA_nvToolsExt_LIBRARY AND NOT TARGET CUDA::nvToolsExt)
+@@ -123,7 +127,7 @@ if (HIP_PLATFORM STREQUAL "nvcc")
+         INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}"
+       )
+     endif()
+-    list(APPEND REQUIRED_CUDA_LIB_VARS CUDA_nvToolsExt_LIBRARY)
++    find_package_message(CUDALibs "Found nvToolsExt: ${CUDA_nvToolsExt_LIBRARY}" "[CUDA_nvToolsExt_LIBRARY]")
+ else()
+     # nvtools not supported by HIP
+     add_library(CUDA::nvToolsExt UNKNOWN IMPORTED)
+@@ -139,6 +143,7 @@ if (HIP_PLATFORM STREQUAL "nvcc")
+         INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}"
+       )
+     endif()
++    find_package_message(CUDALibs "Found cusolver: ${CUDA_cusolver_LIBRARY}" "[CUDA_cusolver_LIBRARY]")
+     list(APPEND REQUIRED_CUDA_LIB_VARS CUDA_cusolver_LIBRARY)
+ else()
+     # cusolver not offered by HIP (?)
+@@ -155,6 +160,7 @@ if (HIP_PLATFORM STREQUAL "nvcc")
+         INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}"
+       )
+     endif()
++    find_package_message(CUDALibs "Found cusparse: ${CUDA_cusparse_LIBRARY}" "[CUDA_cusparse_LIBRARY]")
+     list(APPEND REQUIRED_CUDA_LIB_VARS CUDA_cusparse_LIBRARY)
+ else()
+     # cusparse not supported by HIP (?)
+@@ -180,8 +186,8 @@ if (HIP_PLATFORM STREQUAL "nvcc")
+           NO_DEFAULT_PATH)
+     endif()
+ 
++    find_package_message(CUDALibs "Found compute-santizer: ${CUDA_MEMCHECK_LIBRARY}" "[CUDA_MEMCHECK_LIBRARY]")
+     mark_as_advanced(CUDA_MEMCHECK_EXECUTABLE)
+-    list(APPEND REQUIRED_CUDA_LIB_VARS CUDA_MEMCHECK_EXECUTABLE)
+ endif()
+ 
+ include(FindPackageHandleStandardArgs)

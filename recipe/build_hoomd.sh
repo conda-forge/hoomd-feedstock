@@ -6,18 +6,13 @@ CUDA_SUPPORT="off"
 CUDA_CMAKE_OPTIONS=""
 if [[ $1 == "gpu" ]]; then
     CUDA_SUPPORT="on"
-    # Debugging missing CUDA 12 compiler.
-    echo "Library directory contents:"
-    ls ${BUILD_PREFIX}/lib
-    
+
     CUDA_CMAKE_OPTIONS="-DCMAKE_CUDA_HOST_COMPILER=${CXX}"
-    
-    CUDA_CMAKE_OPTIONS="${CUDA_CMAKE_OPTIONS} -DCUDA_cuda_LIBRARY=${BUILD_PREFIX}/targets/x86_64-linux/lib/stubs/libcuda.so"
-    
-    # Optional libraries/tools that cause errors when not found (will fix in a future HOOMD-blue release)
-    CUDA_CMAKE_OPTIONS="${CUDA_CMAKE_OPTIONS} -DCUDA_nvToolsExt_LIBRARY=${BUILD_PREFIX}/bin/conda"
-    CUDA_CMAKE_OPTIONS="${CUDA_CMAKE_OPTIONS} -DCUDA_MEMCHECK_EXECUTABLE=${BUILD_PREFIX}/bin/conda"
-    
+
+    # The conda-forge build system does not provide libcuda from a nvidia driver,
+    # link to the stub.
+    CUDA_CMAKE_OPTIONS="${CUDA_CMAKE_OPTIONS} -DCUDA_cuda_LIBRARY=${PREFIX}/targets/x86_64-linux/lib/stubs/libcuda.so"
+
     # remove -std=c++17 from CXXFLAGS for compatibility with nvcc
     export CXXFLAGS="$(echo $CXXFLAGS | sed -e 's/ -std=[^ ]*//')"
 fi

@@ -16,6 +16,9 @@ source:
   url: https://github.com/glotzerlab/hoomd-blue/releases/download/v{{ version }}/{{ name }}-v{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
+  patches:
+    - find-cuda-libs.patch
+
 build:
   number: {{ build }}
   # Upstream package does not support Windows, Python < 3.6, or PyPy
@@ -42,10 +45,11 @@ requirements:
     - pybind11                               # [build_platform != target_platform]
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
-    - cuda-nvrtc  # [linux64 and cuda_compiler_version != "None"]
+    - cuda-profiler-api  # [linux64 and cuda_compiler_version != "None"]
     - libcufft-dev  # [linux64 and cuda_compiler_version != "None"]
     - libcusolver-dev  # [linux64 and cuda_compiler_version != "None"]
     - libcusparse-dev  # [linux64 and cuda_compiler_version != "None"]
+    - libcublas-dev  # [linux64 and cuda_compiler_version != "None"]
     # MacOS cross compilation support requires CMake 3.15 or newer
     # 3.23.0 is broken for CUDA builds
     - cmake >=3.16.0,!=3.23.0
@@ -53,6 +57,13 @@ requirements:
     - pkg-config
 
   host:
+    - cuda-driver-dev  # [linux64 and cuda_compiler_version != "None"]
+    - cuda-nvrtc-dev  # [linux64 and cuda_compiler_version != "None"]
+    - cuda-cudart-dev  # [linux64 and cuda_compiler_version != "None"]
+    - libcufft-dev  # [linux64 and cuda_compiler_version != "None"]
+    - libcusolver-dev  # [linux64 and cuda_compiler_version != "None"]
+    - libcusparse-dev  # [linux64 and cuda_compiler_version != "None"]
+    - libcublas-dev  # [linux64 and cuda_compiler_version != "None"]
     - eigen
     - numpy
     - pybind11
@@ -66,25 +77,27 @@ requirements:
     - llvmdev 15.0.7  # [not linux64]
     - clangdev 15.0.7  # [not linux64]
     - llvmdev 14.0.6  # [linux64]
-    - clangdev 14.0.6  # [linux64]    
+    - clangdev 14.0.6  # [linux64]
 
   run:
     - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
     - __cuda >={{ cuda_compiler_version }}  # [linux64 and cuda_compiler_version != "None"]
-    - cudatoolkit  # [linux64 and cuda_compiler_version.startswith("11")]
-    - cuda-nvrtc   # [linux64 and cuda_compiler_version.startswith("12")]
-    - libcufft     # [linux64 and cuda_compiler_version.startswith("12")]
-    - libcusolver  # [linux64 and cuda_compiler_version.startswith("12")]
-    - libcusparse  # [linux64 and cuda_compiler_version.startswith("12")]
+    - cuda-cudart  # [linux64 and cuda_compiler_version != "None"]
+    - cuda-nvrtc   # [linux64 and cuda_compiler_version != "None"]
+    - cuda-cccl  # [linux64 and cuda_compiler_version != "None"]
+    - libcufft     # [linux64 and cuda_compiler_version != "None"]
+    - libcusolver  # [linux64 and cuda_compiler_version != "None"]
+    - libcusparse  # [linux64 and cuda_compiler_version != "None"]
     - python
     - numpy
     - tbb
-    - libclang-cpp 15.0.7
     - libstdcxx-devel_linux-64  # [linux64]
     - sysroot_linux-64  # [linux64]
+    - libclang-cpp 15.0.7  # [not linux64]
     - libcxx 15.0.7  # [not linux64]
     - clang 15.0.7  # [not linux64]
     - clangxx 15.0.7  # [not linux64]
+    - libclang-cpp 14.0.6  # [linux64]
     - libcxx 14.0.6  # [linux64]
     - clang 14.0.6  # [linux64]
     - clangxx 14.0.6  # [linux64]
