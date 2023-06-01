@@ -71,10 +71,11 @@ requirements:
   run:
     - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
     - __cuda >={{ cuda_compiler_version }}  # [linux64 and cuda_compiler_version != "None"]
-    - cuda-nvrtc  # [linux64 and cuda_compiler_version != "None"]
-    - libcufft  # [linux64 and cuda_compiler_version != "None"]
-    - libcusolver  # [linux64 and cuda_compiler_version != "None"]
-    - libcusparse  # [linux64 and cuda_compiler_version != "None"]
+    - cudatoolkit  # [linux64 and cuda_compiler_version.startswith("11")]
+    - cuda-nvrtc   # [linux64 and cuda_compiler_version.startswith("12")]
+    - libcufft     # [linux64 and cuda_compiler_version.startswith("12")]
+    - libcusolver  # [linux64 and cuda_compiler_version.startswith("12")]
+    - libcusparse  # [linux64 and cuda_compiler_version.startswith("12")]
     - python
     - numpy
     - tbb
