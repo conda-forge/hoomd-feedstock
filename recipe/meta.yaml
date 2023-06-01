@@ -45,6 +45,8 @@ requirements:
     - pybind11                               # [build_platform != target_platform]
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
+
+    # These packages provide headers in $BUILD_PREFIX/target
     - cuda-profiler-api  # [linux64 and cuda_compiler_version != "None"]
     - libcufft-dev  # [linux64 and cuda_compiler_version != "None"]
     - libcusolver-dev  # [linux64 and cuda_compiler_version != "None"]
@@ -57,6 +59,7 @@ requirements:
     - pkg-config
 
   host:
+    # These packages provide libraries in $PREFIX/lib
     - cuda-driver-dev  # [linux64 and cuda_compiler_version != "None"]
     - cuda-nvrtc-dev  # [linux64 and cuda_compiler_version != "None"]
     - cuda-cudart-dev  # [linux64 and cuda_compiler_version != "None"]
@@ -111,7 +114,8 @@ test:
     - hoomd.md
     - hoomd.hpmc
   commands:
-    - pytest --pyargs hoomd -v
+    # Build systems lack a working libcuda.so.1, cannot test GPU builds, even on the CPU.
+    - pytest --pyargs hoomd -v  # [cuda_compiler_version != "None"]
 
 about:
   home: https://glotzerlab.engin.umich.edu/hoomd-blue/
