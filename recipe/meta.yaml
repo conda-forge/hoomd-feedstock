@@ -110,12 +110,12 @@ test:
     - pytest
     - rowan
   imports:
-    - hoomd
-    - hoomd.md
-    - hoomd.hpmc
-  commands:
     # Build systems lack a working libcuda.so.1, cannot test GPU builds, even on the CPU.
-    - pytest --pyargs hoomd -v  # [cuda_compiler_version != "None"]
+    - hoomd  # [cuda_compiler_version == "None"]
+    - hoomd.md  # [cuda_compiler_version == "None"]
+    - hoomd.hpmc  # [cuda_compiler_version == "None"]
+  commands:
+    - pytest --pyargs hoomd -v  # [cuda_compiler_version == "None"]
 
 about:
   home: https://glotzerlab.engin.umich.edu/hoomd-blue/
