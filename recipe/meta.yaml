@@ -46,7 +46,6 @@ requirements:
     - libcufft-dev  # [linux64 and cuda_compiler_version != "None"]
     - libcusolver-dev  # [linux64 and cuda_compiler_version != "None"]
     - libcusparse-dev  # [linux64 and cuda_compiler_version != "None"]
-    - cuda-driver-dev  # [linux64 and cuda_compiler_version != "None"]
     # MacOS cross compilation support requires CMake 3.15 or newer
     # 3.23.0 is broken for CUDA builds
     - cmake >=3.16.0,!=3.23.0
