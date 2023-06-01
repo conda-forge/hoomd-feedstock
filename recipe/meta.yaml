@@ -61,8 +61,8 @@ requirements:
     # conda installs to version specific directories.
     - llvmdev 15.0.7  # [not linux64]
     - clangdev 15.0.7  # [not linux64]
-    - llvmdev 14.0.6  # [not linux64]
-    - clangdev 14.0.6  # [not linux64]    
+    - llvmdev 14.0.6  # [linux64]
+    - clangdev 14.0.6  # [linux64]    
 
   run:
     - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
