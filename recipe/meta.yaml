@@ -59,8 +59,11 @@ requirements:
     # Pin all LLVM and clang packages to the latest version with each build.
     # This ensures that HOOMD can find the corresponding header files which
     # conda installs to version specific directories.
-    - llvmdev 16.0.5
-    - clangdev 16.0.5
+    - llvmdev 16.0.5  # [not linux64]
+    - clangdev 16.0.5  # [not linux64]
+    # clang 15 and 16 fail to find headers in sysroot on linux, 14 works
+    - llvmdev 14.0.6  # [linux64]
+    - clangdev 14.0.6  # [linux64]
 
   run:
     - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
@@ -70,10 +73,14 @@ requirements:
     - tbb
     - libstdcxx-devel_linux-64  # [linux64]
     - sysroot_linux-64  # [linux64]
-    - libclang-cpp 16.0.5
-    - libcxx 16.0.5
-    - clang 16.0.5
-    - clangxx 16.0.5
+    - libclang-cpp 16.0.5  # [not linux64]
+    - libcxx 16.0.5  # [not linux64]
+    - clang 16.0.5  # [not linux64]
+    - clangxx 16.0.5  # [not linux64]
+    - libclang-cpp 14.0.6  # [linux64]
+    - libcxx 14.0.6  # [linux64]
+    - clang 14.0.6  # [linux64]
+    - clangxx 14.0.6  # [linux64]
 
 test:
   requires:
