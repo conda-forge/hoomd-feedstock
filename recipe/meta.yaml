@@ -2,7 +2,7 @@
 {% set name = "hoomd" %}
 {% set version = "4.0.1" %}
 {% set build = 0 %}
-{% set sha256 = "df8f018b69c48aa36373ab03f34e99c735407ad017cbc79c8de078dbdecf8eff" %}
+{% set sha256 = "b63dd8debb96f9c530983bd54ecbafa8fd07e017ded3ea64604cfb1f41a644b8" %}
 {% set processor = "cpu" if cuda_compiler_version == "None" else "gpu" %}  # [linux64]
 {% set processor = "cpu" %}  # [not linux64]
 
@@ -13,7 +13,7 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: https://github.com/glotzerlab/hoomd-blue/archive/v{{ version }}.tar.gz
+  url: https://github.com/glotzerlab/hoomd-blue/releases/download/{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
