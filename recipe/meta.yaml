@@ -13,7 +13,7 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: https://github.com/glotzerlab/hoomd-blue/releases/download/{{ version }}/{{ name }}-{{ version }}.tar.gz
+  url: https://github.com/glotzerlab/hoomd-blue/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
