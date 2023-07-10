@@ -71,7 +71,7 @@ requirements:
     - libstdcxx-devel_linux-64  # [linux64]
     - sysroot_linux-64  # [linux64]
     - libclang-cpp 14.0.6
-    - libcxx 14.0.6
+    - libcxx
     - clang 14.0.6
     - clangxx 14.0.6
 
