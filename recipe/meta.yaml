@@ -48,15 +48,6 @@ requirements:
     - ninja
     - pkg-config
 
-    # CUDA dependencies
-    #- cuda-version {{ cuda_compiler_version }}  # [linux64 and cuda_compiler_version != "None"]
-    #- cuda-nvrtc-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
-    #- cuda-profiler-api  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
-    #- libcublas-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
-    #- libcufft-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
-    #- libcusolver-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
-    #- libcusparse-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
-
   host:
     - eigen
     - numpy
