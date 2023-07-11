@@ -2,8 +2,6 @@ mkdir -p build-conda
 cd build-conda
 rm -rf ./*
 
-env
-
 CUDA_SUPPORT="off"
 CUDA_CMAKE_OPTIONS=""
 if [[ $1 == "gpu" ]]; then

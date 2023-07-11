@@ -48,6 +48,8 @@ requirements:
     - ninja
     - pkg-config
 
+    # CUDA dependencies
+    - cuda-version {{ cuda_compiler_version }}  # [linux64 and cuda_compiler_version != "None"]
     - cuda-nvrtc-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
     - cuda-profiler-api  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
     - libcublas-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
@@ -68,6 +70,8 @@ requirements:
     # conda installs to version specific directories.
     - llvmdev 14.0.6
     - clangdev 14.0.6
+    # CUDA dependencies
+    - cuda-version {{ cuda_compiler_version }}  # [linux64 and cuda_compiler_version != "None"]
     - cuda-cudart-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
     - cuda-driver-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
     - cuda-nvrtc-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
@@ -89,6 +93,7 @@ requirements:
     - libclang-cpp 14.0.6
     - clang 14.0.6
     - clangxx 14.0.6
+    - {{ pin_compatible("cuda-version", max_pin="x", min_pin="x") }}  # [linux64 and cuda_compiler_version != "None"]
 
 test:
   requires:
