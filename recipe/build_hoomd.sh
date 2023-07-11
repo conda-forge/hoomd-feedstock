@@ -38,6 +38,17 @@ cmake ../ \
       -DPLUGINS="" \
       -GNinja
 
+if [[ $1 == "gpu" ]] && [[ "${cuda_compiler_version}" != 11* ]]; then
+    # We replace the build prefix with the prefix where the package will be
+    # installed (replaced later by conda at install time). The CMake call
+    # to configure_file uses the build prefix when setting
+    # cuda_include_path to the value of
+    # CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES with CUDA 12, which is not
+    # correct once the package is installed. This include path is important
+    # for NVRTC to find headers for JIT compilation of HPMC user potentials.
+    sed -i 's|'${BUILD_PREFIX}'|'${PREFIX}'|g' hoomd/version_config.py
+fi
+
 # compile
 ninja
 

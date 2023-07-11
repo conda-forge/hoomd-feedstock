@@ -49,13 +49,13 @@ requirements:
     - pkg-config
 
     # CUDA dependencies
-    - cuda-version {{ cuda_compiler_version }}  # [linux64 and cuda_compiler_version != "None"]
-    - cuda-nvrtc-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
-    - cuda-profiler-api  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
-    - libcublas-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
-    - libcufft-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
-    - libcusolver-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
-    - libcusparse-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
+    #- cuda-version {{ cuda_compiler_version }}  # [linux64 and cuda_compiler_version != "None"]
+    #- cuda-nvrtc-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
+    #- cuda-profiler-api  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
+    #- libcublas-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
+    #- libcufft-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
+    #- libcusolver-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
+    #- libcusparse-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
 
   host:
     - eigen
@@ -94,6 +94,10 @@ requirements:
     - clang 14.0.6
     - clangxx 14.0.6
     - {{ pin_compatible("cuda-version", max_pin="x", min_pin="x") }}  # [linux64 and cuda_compiler_version != "None"]
+    # CUDA and CUB headers are used by HOOMD CUDA JIT compilation of user
+    # potentials in HPMC, thus they are needed as run requirements.
+    - cuda-cudart-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
+    - cuda-cccl_linux-64  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
 
 test:
   requires:
