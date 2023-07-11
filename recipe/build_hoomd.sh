@@ -6,7 +6,21 @@ CUDA_SUPPORT="off"
 CUDA_CMAKE_OPTIONS=""
 if [[ $1 == "gpu" ]]; then
     CUDA_SUPPORT="on"
-    CUDA_CMAKE_OPTIONS="-DCMAKE_CUDA_COMPILER=${CUDA_HOME}/bin/nvcc -DCMAKE_CUDA_HOST_COMPILER=${CXX}"
+
+    if [[ "${cuda_compiler_version}" = 11* ]]; then
+        CUDA_CMAKE_OPTIONS="-DCMAKE_CUDA_COMPILER=${CUDA_HOME}/bin/nvcc -DCMAKE_CUDA_HOST_COMPILER=${CXX}"
+    else
+        CUDA_CMAKE_OPTIONS="-DCMAKE_CUDA_HOST_COMPILER=${CXX}"
+
+        [[ ${target_platform} == "linux-64" ]] && targetsDir="targets/x86_64-linux"
+        [[ ${target_platform} == "linux-ppc64le" ]] && targetsDir="targets/ppc64le-linux"
+        [[ ${target_platform} == "linux-aarch64" ]] && targetsDir="targets/sbsa-linux"
+
+        # The conda-forge build system does not provide libcuda from an NVIDIA
+        # driver, so we link to the stub.
+        CUDA_CMAKE_OPTIONS="${CUDA_CMAKE_OPTIONS} -DCUDA_cuda_LIBRARY=${PREFIX}/${targetsDir}/lib/stubs/libcuda.so"
+    fi
+
     # remove -std=c++17 from CXXFLAGS for compatibility with nvcc
     export CXXFLAGS="$(echo $CXXFLAGS | sed -e 's/ -std=[^ ]*//')"
 fi
@@ -23,6 +37,17 @@ cmake ../ \
       -DENABLE_LLVM=on \
       -DPLUGINS="" \
       -GNinja
+
+if [[ $1 == "gpu" ]] && [[ "${cuda_compiler_version}" != 11* ]]; then
+    # We replace the build prefix with the prefix where the package will be
+    # installed (replaced later by conda at install time). The CMake call
+    # to configure_file uses the build prefix when setting
+    # cuda_include_path to the value of
+    # CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES with CUDA 12, which is not
+    # correct once the package is installed. This include path is important
+    # for NVRTC to find headers for JIT compilation of HPMC user potentials.
+    sed -i 's|'${BUILD_PREFIX}'|'${PREFIX}'|g' hoomd/version_config.py
+fi
 
 # compile
 ninja
