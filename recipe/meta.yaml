@@ -1,8 +1,8 @@
 {% set processor = "cpu" %}
 {% set name = "hoomd" %}
-{% set version = "4.2.0" %}
+{% set version = "4.2.1" %}
 {% set build = 0 %}
-{% set sha256 = "6b823fb2bf6b9d98773fb67969efa9144d420d5504d5e29778239538f8bb18df" %}
+{% set sha256 = "980d363c34ed98c22d89ae44e4364007cf9619d5affaabd52fa223d6235a0c21" %}
 {% set processor = "cpu" if cuda_compiler_version == "None" else "gpu" %}  # [linux64]
 {% set processor = "cpu" %}  # [not linux64]
 
