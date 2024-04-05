@@ -36,6 +36,7 @@ cmake ../ \
       -DENABLE_TBB=on \
       -DENABLE_LLVM=on \
       -DPLUGINS="" \
+      -DPYTHON_SITE_INSTALL_DIR="lib/python${PY_VER}/site-packages/hoomd"
       -GNinja
 
 if [[ $1 == "gpu" ]] && [[ "${cuda_compiler_version}" != 11* ]]; then
