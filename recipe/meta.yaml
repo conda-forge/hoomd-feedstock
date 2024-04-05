@@ -15,6 +15,8 @@ source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: https://github.com/glotzerlab/hoomd-blue/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    - fix-python-site-dir.patch
 
 build:
   number: {{ build }}
