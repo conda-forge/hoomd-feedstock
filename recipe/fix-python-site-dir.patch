@@ -1,0 +1,23 @@
+diff --git a/CMake/hoomd/HOOMDPythonSetup.cmake b/CMake/hoomd/HOOMDPythonSetup.cmake
+index 0c0e6ba69..08d8f5753 100644
+--- a/CMake/hoomd/HOOMDPythonSetup.cmake
++++ b/CMake/hoomd/HOOMDPythonSetup.cmake
+@@ -19,8 +19,9 @@ if (pybind11_FOUND)
+ endif()
+ 
+ # when the user specifies CMAKE_INSTALL_PREFIX on first configure, install to "hoomd" under that prefix
+-set(PYTHON_SITE_INSTALL_DIR "hoomd" CACHE PATH
+-    "Python site-packages directory (relative to CMAKE_INSTALL_PREFIX)")
++if (NOT PYTHON_SITE_INSTALL_DIR)
++    set(PYTHON_SITE_INSTALL_DIR "hoomd" CACHE PATH
++        "Python site-packages directory (relative to CMAKE_INSTALL_PREFIX)")
+ 
+ # when no CMAKE_INSTALL_PREFIX is set, default to python's install prefix
+ if((CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT OR "${_python_prefix}" STREQUAL "${CMAKE_INSTALL_PREFIX}") AND Python_SITEARCH)
+@@ -38,5 +39,6 @@ if((CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT OR "${_python_prefix}" STREQUAL
+     set(PYTHON_SITE_INSTALL_DIR "${_python_site_package_rel}/hoomd" CACHE PATH
+         "Python site-packages directory (relative to CMAKE_INSTALL_PREFIX)" FORCE)
+ endif()
++endif()
+ 
+ find_package_message(hoomd_install "Installing hoomd python module to: ${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_INSTALL_DIR}" "[${CMAKE_INSTALL_PREFIX}][${PYTHON_SITE_INSTALL_DIR}]")
