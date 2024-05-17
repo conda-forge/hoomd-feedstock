@@ -34,6 +34,7 @@ requirements:
     - numpy                                  # [build_platform != target_platform]
     - pybind11                               # [build_platform != target_platform]
     - {{ compiler('cxx') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
     # MacOS cross compilation support requires CMake 3.15 or newer
     # 3.23.0 is broken for CUDA builds
@@ -61,7 +62,6 @@ requirements:
     - libcusparse-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
 
   run:
-    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
     - __cuda >={{ cuda_compiler_version }}  # [linux64 and cuda_compiler_version != "None"]
     - python
     - numpy
