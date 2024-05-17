@@ -81,7 +81,7 @@ requirements:
     - numpy
     - tbb
     - libstdcxx-devel_linux-64  # [linux64]
-    - sysroot_linux-64 # [linux64]
+    - sysroot_linux-64  # [linux64]
     - libcxx
     - libclang-cpp 14.0.6
     - clang 14.0.6
