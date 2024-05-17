@@ -1,8 +1,8 @@
 {% set processor = "cpu" %}
 {% set name = "hoomd" %}
-{% set version = "4.6.0" %}
-{% set build = 1 %}
-{% set sha256 = "0002381abd82f4f5d152edb3ac319c184da3980a4bcd377e511d13ef70932c74" %}
+{% set version = "4.7.0" %}
+{% set build = 0 %}
+{% set sha256 = "935dba057de1e322362359bb0effc78d4b0922e43b8bae751dd13ce8bb74e253" %}
 {% set processor = "cpu" if cuda_compiler_version == "None" else "gpu" %}  # [linux64]
 {% set processor = "cpu" %}  # [not linux64]
 
@@ -27,15 +27,6 @@ build:
   script: bash ${RECIPE_DIR}/build_hoomd.sh gpu  # [linux64 and cuda_compiler_version != "None"]
   script: bash ${RECIPE_DIR}/build_hoomd.sh  # [not linux64 or cuda_compiler_version == "None"]
 
-  rpaths:
-    - lib/
-    - lib/python3.11/site-packages/{{ name }}  # [py==311]
-    - lib/python3.10/site-packages/{{ name }}  # [py==310]
-    - lib/python3.9/site-packages/{{ name }}  # [py==39]
-    - lib/python3.8/site-packages/{{ name }}  # [py==38]
-    - lib/python3.7/site-packages/{{ name }}  # [py==37]
-    - lib/python3.6/site-packages/{{ name }}  # [py==36]
-
 requirements:
   build:
     - python                                 # [build_platform != target_platform]
@@ -58,11 +49,6 @@ requirements:
     - tbb
     - tbb-devel
     - pybind11-abi
-    # Pin LLVM and clang packages to that pinned by the `compilers` package.
-    # This ensures that HOOMD can find the corresponding header files which
-    # conda installs to version specific directories.
-    - llvmdev 14.0.6
-    - clangdev 14.0.6
     # CUDA dependencies
     - cuda-version {{ cuda_compiler_version }}  # [linux64 and cuda_compiler_version != "None"]
     - cuda-cudart-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
@@ -80,17 +66,7 @@ requirements:
     - python
     - numpy
     - tbb
-    - libstdcxx-devel_linux-64  # [linux64]
-    - sysroot_linux-64  # [linux64]
-    - libcxx
-    - libclang-cpp 14.0.6
-    - clang 14.0.6
-    - clangxx 14.0.6
     - {{ pin_compatible("cuda-version", max_pin="x", min_pin="x") }}  # [linux64 and cuda_compiler_version != "None"]
-    # CUDA and CUB headers are used by HOOMD CUDA JIT compilation of user
-    # potentials in HPMC, thus they are needed as run requirements.
-    - cuda-cudart-dev  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
-    - cuda-cccl_linux-64  # [linux64 and cuda_compiler_version != "None" and float(cuda_compiler_version) >= 12.0]
 
 test:
   requires:
@@ -126,3 +102,4 @@ extra:
     - joaander
     - bdice
     - b-butler
+    - tcmoore3
