@@ -34,7 +34,7 @@ cmake ../ \
       -DENABLE_GPU=${CUDA_SUPPORT} ${CUDA_CMAKE_OPTIONS} \
       -DBUILD_TESTING=off \
       -DENABLE_TBB=on \
-      -DENABLE_LLVM=on \
+      -DENABLE_LLVM=off \
       -DPLUGINS="" \
       -DPYTHON_SITE_INSTALL_DIR="lib/python${PY_VER}/site-packages/hoomd" \
       -GNinja
@@ -45,8 +45,7 @@ if [[ $1 == "gpu" ]] && [[ "${cuda_compiler_version}" != 11* ]]; then
     # to configure_file uses the build prefix when setting
     # cuda_include_path to the value of
     # CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES with CUDA 12, which is not
-    # correct once the package is installed. This include path is important
-    # for NVRTC to find headers for JIT compilation of HPMC user potentials.
+    # correct once the package is installed.
     sed -i 's|'${BUILD_PREFIX}'|'${PREFIX}'|g' hoomd/version_config.py
 fi
 
