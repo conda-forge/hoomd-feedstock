@@ -15,14 +15,8 @@ if [[ $1 == "gpu" ]]; then
         [[ ${target_platform} == "linux-64" ]] && targetsDir="targets/x86_64-linux"
         [[ ${target_platform} == "linux-ppc64le" ]] && targetsDir="targets/ppc64le-linux"
         [[ ${target_platform} == "linux-aarch64" ]] && targetsDir="targets/sbsa-linux"
-
-        # The conda-forge build system does not provide libcuda from an NVIDIA
-        # driver, so we link to the stub.
-        CUDA_CMAKE_OPTIONS="${CUDA_CMAKE_OPTIONS} -DCUDA_cuda_LIBRARY=${PREFIX}/${targetsDir}/lib/stubs/libcuda.so"
     fi
 
-    # remove -std=c++17 from CXXFLAGS for compatibility with nvcc
-    export CXXFLAGS="$(echo $CXXFLAGS | sed -e 's/ -std=[^ ]*//')"
 fi
 
 # work around 'operator delete' is unavailable on macOS: https://conda-forge.org/docs/maintainer/knowledge_base.html#newer-c-features-with-old-sdk
