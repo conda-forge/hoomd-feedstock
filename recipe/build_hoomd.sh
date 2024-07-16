@@ -21,9 +21,11 @@ if [[ $1 == "gpu" ]]; then
         CUDA_CMAKE_OPTIONS="${CUDA_CMAKE_OPTIONS} -DCUDA_cuda_LIBRARY=${PREFIX}/${targetsDir}/lib/stubs/libcuda.so"
     fi
 
-    # remove -std=c++17 from CXXFLAGS for compatibility with nvcc
-    export CXXFLAGS="$(echo $CXXFLAGS | sed -e 's/ -std=[^ ]*//')"
 fi
+
+# work around incorrect architecture flags and agressive optimizations set by the conda-forge build system
+export CXXFLAGS=""
+export CFLAGS=""
 
 # work around 'operator delete' is unavailable on macOS: https://conda-forge.org/docs/maintainer/knowledge_base.html#newer-c-features-with-old-sdk
 export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
