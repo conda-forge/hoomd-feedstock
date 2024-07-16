@@ -66,7 +66,7 @@ requirements:
   run:
     - __cuda >={{ cuda_compiler_version }}  # [linux64 and cuda_compiler_version != "None"]
     - python
-    - numpy
+    - {{ pin_compatible('numpy') }}
     - tbb
     - {{ pin_compatible("cuda-version", max_pin="x", min_pin="x") }}  # [linux64 and cuda_compiler_version != "None"]
 
@@ -79,8 +79,7 @@ test:
     - hoomd.md
     - hoomd.hpmc
   commands:
-    # Temporarily skip test_mesh.py - for unknown reasons it generates illegal instructions on macOS intel builds.
-    - pytest --pyargs hoomd -v -k "not test_empty_mesh"
+    - pytest --pyargs hoomd -v
 
 about:
   home: https://glotzerlab.engin.umich.edu/hoomd-blue/
