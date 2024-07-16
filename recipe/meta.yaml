@@ -80,7 +80,7 @@ test:
     - hoomd.hpmc
   commands:
     # Temporarily skip test_mesh.py - for unknown reasons it generates illegal instructions on macOS intel builds.
-    - pytest --pyargs hoomd -v --ignore-glob '**/test_mesh.py'
+    - pytest --pyargs hoomd -v -k "not test_empty_mesh"
 
 about:
   home: https://glotzerlab.engin.umich.edu/hoomd-blue/
