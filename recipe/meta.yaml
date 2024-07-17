@@ -79,7 +79,8 @@ test:
     - hoomd.hpmc
   commands:
     # For unknown reasons, macos-x86_64 causes illegal instruction errors when running tests.
-    - pytest --pyargs hoomd -v  # [linux64 or arm64]
+    - pytest --pyargs hoomd -v  # [linux64]
+    - pytest --pyargs hoomd -v  # [osx and arm64]
 
 about:
   home: https://glotzerlab.engin.umich.edu/hoomd-blue/
