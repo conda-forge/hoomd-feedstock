@@ -1,0 +1,361 @@
+diff --git a/hoomd/BondedGroupData.cc b/hoomd/BondedGroupData.cc
+index 26a42644e..7feae7522 100644
+--- a/hoomd/BondedGroupData.cc
++++ b/hoomd/BondedGroupData.cc
+@@ -1418,7 +1418,12 @@ pybind11::object BondedGroupData<group_size, Group, name, has_type_mapping>::Sna
+     assert(has_type_mapping);
+     auto self_cpp
+         = self.cast<BondedGroupData<group_size, Group, name, has_type_mapping>::Snapshot*>();
+-    return pybind11::array(self_cpp->type_id.size(), &self_cpp->type_id[0], self);
++
++    if (self_cpp->type_id.size() == 0)
++        {
++        return pybind11::array(pybind11::dtype::of<unsigned int>(), 0, nullptr);
++        }
++    return pybind11::array(self_cpp->type_id.size(), self_cpp->type_id.data(), self);
+     }
+ 
+ /*! \returns a numpy array that wraps the value data element.
+@@ -1432,7 +1437,12 @@ pybind11::object BondedGroupData<group_size, Group, name, has_type_mapping>::Sna
+     assert(!has_type_mapping);
+     auto self_cpp
+         = self.cast<BondedGroupData<group_size, Group, name, has_type_mapping>::Snapshot*>();
+-    return pybind11::array(self_cpp->val.size(), &self_cpp->val[0], self);
++
++    if (self_cpp->val.size() == 0)
++        {
++        return pybind11::array(pybind11::dtype::of<Scalar>(), 0, nullptr);
++        }
++    return pybind11::array(self_cpp->val.size(), self_cpp->val.data(), self);
+     }
+ 
+ /*! \returns a numpy array that wraps the groups data element.
+@@ -1449,7 +1459,12 @@ BondedGroupData<group_size, Group, name, has_type_mapping>::Snapshot::getBondedT
+     std::vector<size_t> dims(2);
+     dims[0] = self_cpp->groups.size();
+     dims[1] = group_size;
+-    return pybind11::array(dims, (unsigned int*)&self_cpp->groups[0], self);
++
++    if (dims[0] == 0)
++        {
++        return pybind11::array(pybind11::dtype::of<unsigned int>(), dims, nullptr);
++        }
++    return pybind11::array(dims, (unsigned int*)self_cpp->groups.data(), self);
+     }
+ 
+ /*! \returns A python list of type names
+diff --git a/hoomd/GSDReader.cc b/hoomd/GSDReader.cc
+index debec2694..8403642d6 100644
+--- a/hoomd/GSDReader.cc
++++ b/hoomd/GSDReader.cc
+@@ -222,25 +222,25 @@ void GSDReader::readParticles()
+ 
+     // the snapshot already has default values, if a chunk is not found, the value
+     // is already at the default, and the failed read is not a problem
+-    readChunk(&m_snapshot->particle_data.type[0], m_frame, "particles/typeid", N * 4, N);
+-    readChunk(&m_snapshot->particle_data.mass[0], m_frame, "particles/mass", N * 4, N);
+-    readChunk(&m_snapshot->particle_data.charge[0], m_frame, "particles/charge", N * 4, N);
+-    readChunk(&m_snapshot->particle_data.diameter[0], m_frame, "particles/diameter", N * 4, N);
+-    readChunk(&m_snapshot->particle_data.body[0], m_frame, "particles/body", N * 4, N);
+-    readChunk(&m_snapshot->particle_data.inertia[0],
++    readChunk(m_snapshot->particle_data.type.data(), m_frame, "particles/typeid", N * 4, N);
++    readChunk(m_snapshot->particle_data.mass.data(), m_frame, "particles/mass", N * 4, N);
++    readChunk(m_snapshot->particle_data.charge.data(), m_frame, "particles/charge", N * 4, N);
++    readChunk(m_snapshot->particle_data.diameter.data(), m_frame, "particles/diameter", N * 4, N);
++    readChunk(m_snapshot->particle_data.body.data(), m_frame, "particles/body", N * 4, N);
++    readChunk(m_snapshot->particle_data.inertia.data(),
+               m_frame,
+               "particles/moment_inertia",
+               N * 12,
+               N);
+-    readChunk(&m_snapshot->particle_data.pos[0], m_frame, "particles/position", N * 12, N);
+-    readChunk(&m_snapshot->particle_data.orientation[0],
++    readChunk(m_snapshot->particle_data.pos.data(), m_frame, "particles/position", N * 12, N);
++    readChunk(m_snapshot->particle_data.orientation.data(),
+               m_frame,
+               "particles/orientation",
+               N * 16,
+               N);
+-    readChunk(&m_snapshot->particle_data.vel[0], m_frame, "particles/velocity", N * 12, N);
+-    readChunk(&m_snapshot->particle_data.angmom[0], m_frame, "particles/angmom", N * 16, N);
+-    readChunk(&m_snapshot->particle_data.image[0], m_frame, "particles/image", N * 12, N);
++    readChunk(m_snapshot->particle_data.vel.data(), m_frame, "particles/velocity", N * 12, N);
++    readChunk(m_snapshot->particle_data.angmom.data(), m_frame, "particles/angmom", N * 16, N);
++    readChunk(m_snapshot->particle_data.image.data(), m_frame, "particles/image", N * 12, N);
+     }
+ 
+ /*! Read the same data chunks for topology
+@@ -253,8 +253,8 @@ void GSDReader::readTopology()
+     if (N > 0)
+         {
+         m_snapshot->bond_data.resize(N);
+-        readChunk(&m_snapshot->bond_data.type_id[0], m_frame, "bonds/typeid", N * 4, N);
+-        readChunk(&m_snapshot->bond_data.groups[0], m_frame, "bonds/group", N * 8, N);
++        readChunk(m_snapshot->bond_data.type_id.data(), m_frame, "bonds/typeid", N * 4, N);
++        readChunk(m_snapshot->bond_data.groups.data(), m_frame, "bonds/group", N * 8, N);
+         }
+ 
+     N = 0;
+@@ -263,8 +263,8 @@ void GSDReader::readTopology()
+     if (N > 0)
+         {
+         m_snapshot->angle_data.resize(N);
+-        readChunk(&m_snapshot->angle_data.type_id[0], m_frame, "angles/typeid", N * 4, N);
+-        readChunk(&m_snapshot->angle_data.groups[0], m_frame, "angles/group", N * 12, N);
++        readChunk(m_snapshot->angle_data.type_id.data(), m_frame, "angles/typeid", N * 4, N);
++        readChunk(m_snapshot->angle_data.groups.data(), m_frame, "angles/group", N * 12, N);
+         }
+ 
+     N = 0;
+@@ -273,8 +273,8 @@ void GSDReader::readTopology()
+     if (N > 0)
+         {
+         m_snapshot->dihedral_data.resize(N);
+-        readChunk(&m_snapshot->dihedral_data.type_id[0], m_frame, "dihedrals/typeid", N * 4, N);
+-        readChunk(&m_snapshot->dihedral_data.groups[0], m_frame, "dihedrals/group", N * 16, N);
++        readChunk(m_snapshot->dihedral_data.type_id.data(), m_frame, "dihedrals/typeid", N * 4, N);
++        readChunk(m_snapshot->dihedral_data.groups.data(), m_frame, "dihedrals/group", N * 16, N);
+         }
+ 
+     N = 0;
+@@ -283,8 +283,8 @@ void GSDReader::readTopology()
+     if (N > 0)
+         {
+         m_snapshot->improper_data.resize(N);
+-        readChunk(&m_snapshot->improper_data.type_id[0], m_frame, "impropers/typeid", N * 4, N);
+-        readChunk(&m_snapshot->improper_data.groups[0], m_frame, "impropers/group", N * 16, N);
++        readChunk(m_snapshot->improper_data.type_id.data(), m_frame, "impropers/typeid", N * 4, N);
++        readChunk(m_snapshot->improper_data.groups.data(), m_frame, "impropers/group", N * 16, N);
+         }
+ 
+     N = 0;
+@@ -297,7 +297,11 @@ void GSDReader::readTopology()
+         for (unsigned int i = 0; i < N; i++)
+             m_snapshot->constraint_data.val[i] = Scalar(data[i]);
+ 
+-        readChunk(&m_snapshot->constraint_data.groups[0], m_frame, "constraints/group", N * 8, N);
++        readChunk(m_snapshot->constraint_data.groups.data(),
++                  m_frame,
++                  "constraints/group",
++                  N * 8,
++                  N);
+         }
+ 
+     if (m_handle.header.schema_version >= gsd_make_version(1, 1))
+@@ -308,8 +312,8 @@ void GSDReader::readTopology()
+         if (N > 0)
+             {
+             m_snapshot->pair_data.resize(N);
+-            readChunk(&m_snapshot->pair_data.type_id[0], m_frame, "pairs/typeid", N * 4, N);
+-            readChunk(&m_snapshot->pair_data.groups[0], m_frame, "pairs/group", N * 8, N);
++            readChunk(m_snapshot->pair_data.type_id.data(), m_frame, "pairs/typeid", N * 4, N);
++            readChunk(m_snapshot->pair_data.groups.data(), m_frame, "pairs/group", N * 8, N);
+             }
+         }
+     }
+diff --git a/hoomd/ParticleData.cc b/hoomd/ParticleData.cc
+index 015030f00..507868760 100644
+--- a/hoomd/ParticleData.cc
++++ b/hoomd/ParticleData.cc
+@@ -3832,7 +3832,11 @@ template<class Real> pybind11::object SnapshotParticleData<Real>::getPosNP(pybin
+     std::vector<size_t> dims(2);
+     dims[0] = self_cpp->pos.size();
+     dims[1] = 3;
+-    return pybind11::array(dims, (Real*)&self_cpp->pos[0], self);
++    if (dims[0] == 0)
++        {
++        return pybind11::array(pybind11::dtype::of<Real>(), dims, nullptr);
++        }
++    return pybind11::array(dims, (Real*)self_cpp->pos.data(), self);
+     }
+ 
+ /*! \returns a numpy array that wraps the pos data element.
+@@ -3848,7 +3852,11 @@ template<class Real> pybind11::object SnapshotParticleData<Real>::getVelNP(pybin
+     std::vector<size_t> dims(2);
+     dims[0] = self_cpp->pos.size();
+     dims[1] = 3;
+-    return pybind11::array(dims, (Real*)&self_cpp->vel[0], self);
++    if (dims[0] == 0)
++        {
++        return pybind11::array(pybind11::dtype::of<Real>(), dims, nullptr);
++        }
++    return pybind11::array(dims, (Real*)self_cpp->vel.data(), self);
+     }
+ 
+ /*! \returns a numpy array that wraps the pos data element.
+@@ -3864,7 +3872,11 @@ template<class Real> pybind11::object SnapshotParticleData<Real>::getAccelNP(pyb
+     std::vector<size_t> dims(2);
+     dims[0] = self_cpp->pos.size();
+     dims[1] = 3;
+-    return pybind11::array(dims, (Real*)&self_cpp->accel[0], self);
++    if (dims[0] == 0)
++        {
++        return pybind11::array(pybind11::dtype::of<Real>(), dims, nullptr);
++        }
++    return pybind11::array(dims, (Real*)self_cpp->accel.data(), self);
+     }
+ 
+ /*! \returns a numpy array that wraps the type data element.
+@@ -3877,7 +3889,11 @@ template<class Real> pybind11::object SnapshotParticleData<Real>::getTypeNP(pybi
+     // mark as dirty when accessing internal data
+     self_cpp->is_accel_set = false;
+ 
+-    return pybind11::array(self_cpp->type.size(), &self_cpp->type[0], self);
++    if (self_cpp->type.size() == 0)
++        {
++        return pybind11::array(pybind11::dtype::of<unsigned int>(), 0, nullptr);
++        }
++    return pybind11::array(self_cpp->type.size(), self_cpp->type.data(), self);
+     }
+ 
+ /*! \returns a numpy array that wraps the mass data element.
+@@ -3890,7 +3906,11 @@ template<class Real> pybind11::object SnapshotParticleData<Real>::getMassNP(pybi
+     // mark as dirty when accessing internal data
+     self_cpp->is_accel_set = false;
+ 
+-    return pybind11::array(self_cpp->mass.size(), &self_cpp->mass[0], self);
++    if (self_cpp->mass.size() == 0)
++        {
++        return pybind11::array(pybind11::dtype::of<Real>(), 0, nullptr);
++        }
++    return pybind11::array(self_cpp->mass.size(), self_cpp->mass.data(), self);
+     }
+ 
+ /*! \returns a numpy array that wraps the charge data element.
+@@ -3903,7 +3923,11 @@ template<class Real> pybind11::object SnapshotParticleData<Real>::getChargeNP(py
+     // mark as dirty when accessing internal data
+     self_cpp->is_accel_set = false;
+ 
+-    return pybind11::array(self_cpp->charge.size(), &self_cpp->charge[0], self);
++    if (self_cpp->charge.size() == 0)
++        {
++        return pybind11::array(pybind11::dtype::of<Real>(), 0, nullptr);
++        }
++    return pybind11::array(self_cpp->charge.size(), self_cpp->charge.data(), self);
+     }
+ 
+ /*! \returns a numpy array that wraps the diameter data element.
+@@ -3917,7 +3941,11 @@ pybind11::object SnapshotParticleData<Real>::getDiameterNP(pybind11::object self
+     // mark as dirty when accessing internal data
+     self_cpp->is_accel_set = false;
+ 
+-    return pybind11::array(self_cpp->diameter.size(), &self_cpp->diameter[0], self);
++    if (self_cpp->diameter.size() == 0)
++        {
++        return pybind11::array(pybind11::dtype::of<Real>(), 0, nullptr);
++        }
++    return pybind11::array(self_cpp->diameter.size(), self_cpp->diameter.data(), self);
+     }
+ 
+ /*! \returns a numpy array that wraps the image data element.
+@@ -3933,7 +3961,12 @@ template<class Real> pybind11::object SnapshotParticleData<Real>::getImageNP(pyb
+     std::vector<size_t> dims(2);
+     dims[0] = self_cpp->pos.size();
+     dims[1] = 3;
+-    return pybind11::array(dims, (int*)&self_cpp->image[0], self);
++
++    if (dims[0] == 0)
++        {
++        return pybind11::array(pybind11::dtype::of<int>(), dims, nullptr);
++        }
++    return pybind11::array(dims, (int*)self_cpp->image.data(), self);
+     }
+ 
+ /*! \returns a numpy array that wraps the body data element.
+@@ -3946,7 +3979,11 @@ template<class Real> pybind11::object SnapshotParticleData<Real>::getBodyNP(pybi
+     // mark as dirty when accessing internal data
+     self_cpp->is_accel_set = false;
+ 
+-    return pybind11::array(self_cpp->body.size(), (int*)&self_cpp->body[0], self);
++    if (self_cpp->body.size() == 0)
++        {
++        return pybind11::array(pybind11::dtype::of<Real>(), 0, nullptr);
++        }
++    return pybind11::array(self_cpp->body.size(), (int*)self_cpp->body.data(), self);
+     }
+ 
+ /*! \returns a numpy array that wraps the orientation data element.
+@@ -3963,7 +4000,12 @@ pybind11::object SnapshotParticleData<Real>::getOrientationNP(pybind11::object s
+     std::vector<size_t> dims(2);
+     dims[0] = self_cpp->pos.size();
+     dims[1] = 4;
+-    return pybind11::array(dims, (Real*)&self_cpp->orientation[0], self);
++
++    if (dims[0] == 0)
++        {
++        return pybind11::array(pybind11::dtype::of<Real>(), dims, nullptr);
++        }
++    return pybind11::array(dims, (Real*)self_cpp->orientation.data(), self);
+     }
+ 
+ /*! \returns a numpy array that wraps the moment of inertia data element.
+@@ -3980,7 +4022,12 @@ pybind11::object SnapshotParticleData<Real>::getMomentInertiaNP(pybind11::object
+     std::vector<size_t> dims(2);
+     dims[0] = self_cpp->inertia.size();
+     dims[1] = 3;
+-    return pybind11::array(dims, (Real*)&self_cpp->inertia[0], self);
++
++    if (dims[0] == 0)
++        {
++        return pybind11::array(pybind11::dtype::of<Real>(), dims, nullptr);
++        }
++    return pybind11::array(dims, (Real*)self_cpp->inertia.data(), self);
+     }
+ 
+ /*! \returns a numpy array that wraps the angular momentum data element.
+@@ -3996,7 +4043,12 @@ template<class Real> pybind11::object SnapshotParticleData<Real>::getAngmomNP(py
+     std::vector<size_t> dims(2);
+     dims[0] = self_cpp->angmom.size();
+     dims[1] = 4;
+-    return pybind11::array(dims, (Real*)&self_cpp->angmom[0], self);
++
++    if (dims[0] == 0)
++        {
++        return pybind11::array(pybind11::dtype::of<Real>(), dims, nullptr);
++        }
++    return pybind11::array(dims, (Real*)self_cpp->angmom.data(), self);
+     }
+ 
+ /*! \returns A python list of type names
+diff --git a/hoomd/mpcd/ParticleDataSnapshot.cc b/hoomd/mpcd/ParticleDataSnapshot.cc
+index 163705f3a..5e208e861 100644
+--- a/hoomd/mpcd/ParticleDataSnapshot.cc
++++ b/hoomd/mpcd/ParticleDataSnapshot.cc
+@@ -176,7 +176,11 @@ void export_ParticleDataSnapshot(pybind11::module& m)
+                 std::vector<ssize_t> dims(2);
+                 dims[0] = self_cpp->position.size();
+                 dims[1] = 3;
+-                return pybind11::array(dims, (Scalar*)&self_cpp->position[0], self);
++                if (dims[0] == 0)
++                    {
++                    return pybind11::array(pybind11::dtype::of<Scalar>(), dims, nullptr);
++                    }
++                return pybind11::array(dims, (Scalar*)self_cpp->position.data(), self);
+             })
+         .def_property_readonly(
+             "velocity",
+@@ -187,14 +191,22 @@ void export_ParticleDataSnapshot(pybind11::module& m)
+                 std::vector<ssize_t> dims(2);
+                 dims[0] = self_cpp->velocity.size();
+                 dims[1] = 3;
+-                return pybind11::array(dims, (Scalar*)&self_cpp->velocity[0], self);
++                if (dims[0] == 0)
++                    {
++                    return pybind11::array(pybind11::dtype::of<Scalar>(), dims, nullptr);
++                    }
++                return pybind11::array(dims, (Scalar*)self_cpp->velocity.data(), self);
+             })
+         .def_property_readonly(
+             "typeid",
+             [](pybind11::object self)
+             {
+                 auto self_cpp = self.cast<ParticleDataSnapshot*>();
+-                return pybind11::array(self_cpp->type.size(), &self_cpp->type[0], self);
++                if (self_cpp->type.size() == 0)
++                    {
++                    return pybind11::array(pybind11::dtype::of<unsigned int>(), 0, nullptr);
++                    }
++                return pybind11::array(self_cpp->type.size(), self_cpp->type.data(), self);
+             })
+         .def_readwrite("mass", &mpcd::ParticleDataSnapshot::mass)
+         .def_property(
