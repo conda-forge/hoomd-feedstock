@@ -78,9 +78,7 @@ test:
     - hoomd.md
     - hoomd.hpmc
   commands:
-    # I am not sure what is causing the illegal instruction on macos x86-64, but it seems numpy related.
-    # Will rebuild with numpy 2.0 and check to see if the error occurs again.
-    - pytest --pyargs hoomd -v  # [not (osx and x86_64)]
+    - pytest --pyargs hoomd -v
 
 about:
   home: https://glotzerlab.engin.umich.edu/hoomd-blue/
