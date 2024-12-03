@@ -22,9 +22,7 @@ build:
   number: {{ build }}
   run_exports:
     - {{ pin_subpackage('hoomd', max_pin='x.x.x') }}
-  # Upstream package does not support Windows, Python < 3.6, or PyPy
-  skip: true  # [win or py<=38 or python_impl == "pypy"]
-  skip: true  # [cuda_compiler_version != "None" and  float(cuda_compiler_version) < float(cuda_compiler_version_min)]
+  skip: true  # [win or python_impl == "pypy" or (cuda_compiler_version != "None" and  float(cuda_compiler_version) < float(cuda_compiler_version_min))]
   string: {{ processor }}_py{{ py }}h{{ PKG_HASH }}_{{ build }}
   script: bash ${RECIPE_DIR}/build_hoomd.sh gpu  # [linux64 and cuda_compiler_version != "None"]
   script: bash ${RECIPE_DIR}/build_hoomd.sh  # [not linux64 or cuda_compiler_version == "None"]
