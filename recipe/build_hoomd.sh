@@ -27,8 +27,6 @@ cmake ../ \
       -DENABLE_MPI=off \
       -DENABLE_GPU=${CUDA_SUPPORT} ${CUDA_CMAKE_OPTIONS} \
       -DBUILD_TESTING=off \
-      -DENABLE_TBB=on \
-      -DENABLE_LLVM=off \
       -DPLUGINS="" \
       -DPYTHON_SITE_INSTALL_DIR="lib/python${PY_VER}/site-packages/hoomd" \
       -GNinja
