@@ -3,7 +3,7 @@ c_stdlib:
 c_stdlib_version:
 - '2.17'
 cdt_name:
-- cos7
+- conda
 channel_sources:
 - conda-forge
 channel_targets:
@@ -17,7 +17,7 @@ cxx_compiler:
 cxx_compiler_version:
 - '11'
 docker_image:
-- quay.io/condaforge/linux-anvil-cuda:11.8
+- quay.io/condaforge/linux-anvil-x86_64-cuda11.8:ubi8
 numpy:
 - '2.0'
 pin_run_as_build:
@@ -27,19 +27,13 @@ pin_run_as_build:
 pybind11_abi:
 - '4'
 python:
-- 3.10.* *_cpython
+- 3.11.* *_cpython
 python_impl:
 - cpython
 target_platform:
 - linux-64
-tbb:
-- '2021'
-tbb_devel:
-- '2021'
 zip_keys:
 - - cxx_compiler_version
-  - c_stdlib_version
-  - cdt_name
   - cuda_compiler
   - cuda_compiler_version
   - docker_image
