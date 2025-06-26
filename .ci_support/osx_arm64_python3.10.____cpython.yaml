@@ -19,7 +19,7 @@ cxx_compiler_version:
 macos_machine:
 - arm64-apple-darwin20.0.0
 numpy:
-- '2.0'
+- '2'
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -32,7 +32,3 @@ python_impl:
 - cpython
 target_platform:
 - osx-arm64
-zip_keys:
-- - python
-  - numpy
-  - python_impl
