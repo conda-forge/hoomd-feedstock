@@ -3,10 +3,7 @@ schema_version: 1
 context:
   name: "hoomd"
   version: "5.4.0"
-  processor:
-    - if: linux64
-      then: ${{ "cpu" if cuda_compiler_version == "None" else "gpu" }}
-      else: "cpu"
+  processor: ${{ "gpu" if linux64 and cuda_compiler_version != "None" else "cpu" }}
 
 package:
   name: ${{ name }}
@@ -14,18 +11,18 @@ package:
 
 source:
   url: https://github.com/glotzerlab/hoomd-blue/releases/download/v${{ version }}/${{ name }}-${{ version }}.tar.gz
-  sha256: sha256:364b62c7288a743f934001bf372960e6b6ee54c5d8dec402fee0f1665e4e067a
+  sha256: 364b62c7288a743f934001bf372960e6b6ee54c5d8dec402fee0f1665e4e067a
   patches:
-    - fix-python-site-dir.patch
+    - "fix-python-site-dir.patch"
 
 build:
   number: 0
   string: ${{ processor }}_py${{ py }}h${{ PKG_HASH }}_${{ build }}
   script: bash ${RECIPE_DIR}/build_hoomd.sh ${{ processor }}
-  run_exports:
-    - ${{ pin_subpackage('hoomd', max_pin='x.x.x') }}
   
 requirements:
+  run_exports:
+    - ${{ pin_subpackage('hoomd', upper_bound='x.x.x') }}
   build:
     - ${{ compiler('cxx') }}
     - ${{ stdlib("c") }}
@@ -66,12 +63,13 @@ requirements:
       - __cuda >=${{ cuda_compiler_version }}
       - ${{ pin_compatible("cuda-version", max_pin="x", min_pin="x") }}
 
-test:
+tests:
   - script:
       - pytest --pyargs hoomd -v
     requirements:
-      - pytest
-      - rowan  
+      run:
+        - pytest
+        - rowan  
 
 
 about:
