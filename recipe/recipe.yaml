@@ -1,0 +1,101 @@
+schema_version: 1
+
+context:
+  name: "hoomd"
+  version: "5.4.0"
+  processor:
+    - if: linux64
+      then: ${{ "cpu" if cuda_compiler_version == "None" else "gpu" }}
+      else: "cpu"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/glotzerlab/hoomd-blue/releases/download/v${{ version }}/${{ name }}-${{ version }}.tar.gz
+  sha256: sha256:364b62c7288a743f934001bf372960e6b6ee54c5d8dec402fee0f1665e4e067a
+  patches:
+    - fix-python-site-dir.patch
+
+build:
+  number: 0
+  string: ${{ processor }}_py${{ py }}h${{ PKG_HASH }}_${{ build }}
+  script: bash ${RECIPE_DIR}/build_hoomd.sh ${{ processor }}
+  run_exports:
+    - ${{ pin_subpackage('hoomd', max_pin='x.x.x') }}
+  
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - cmake
+    - ninja
+    - pkg-config
+    - if: build_platform != target_platform
+      then:
+        - python                                 
+        - cross-python_${{ target_platform }}     
+        - numpy                                  
+        - pybind11 >=2.12.0
+    - if: linux64 and cuda_compiler_version != "None"
+      then: ${{ compiler('cuda') }}
+
+  host:
+    - eigen
+    - numpy
+    - pybind11 >=2.12.0
+    - python
+    - pybind11-abi
+    - if: linux64 and cuda_compiler_version != "None"
+      then: 
+      - cuda-version ${{ cuda_compiler_version }}
+      - cuda-cudart-dev
+      - cuda-driver-dev
+      - cuda-nvrtc-dev
+      - cuda-profiler-api
+      - libcublas-dev
+      - libcufft-dev
+      - libcusolver-dev
+      - libcusparse-dev
+
+  run:
+    - python
+    - if: linux64 and cuda_compiler_version != "None"
+      then: 
+      - __cuda >=${{ cuda_compiler_version }}
+      - ${{ pin_compatible("cuda-version", max_pin="x", min_pin="x") }}
+
+test:
+  - script:
+      - pytest --pyargs hoomd -v
+    requirements:
+      - pytest
+      - rowan  
+
+
+about:
+  homepage: https://glotzerlab.engin.umich.edu/hoomd-blue/
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: HOOMD-blue is a general-purpose particle simulation toolkit.
+
+  description: |
+    HOOMD-blue is a general-purpose particle simulation toolkit, implementing molecular
+    dynamics and hard particle Monte Carlo optimized for fast execution on both GPUs and
+    CPUs. As a Python package, HOOMD-blue gives you the flexibility to create custom
+    initialization routines, control simulation parameters, perform in situ analysis,
+    use interactive notebooks, and more.
+
+  documentation: https://hoomd-blue.readthedocs.io
+  repository: https://github.com/glotzerlab/hoomd-blue/
+
+extra:
+  recipe-maintainers:
+    - joaander
+    - tcmoore3
+    - SchoeniPhlippsn
+    - DomFijan
+    - janbridley
+    - tfteague
+    - sumitavaumich
