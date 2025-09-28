@@ -7,9 +7,11 @@ c_stdlib:
 c_stdlib_version:
 - '10.14'
 channel_sources:
-- conda-forge,conda-forge/label/python_rc
+- conda-forge
 channel_targets:
 - conda-forge main
+cuda_compiler:
+- cuda-nvcc
 cuda_compiler_version:
 - None
 cxx_compiler:
@@ -27,9 +29,7 @@ pin_run_as_build:
 pybind11_abi:
 - '11'
 python:
-- 3.14.* *_cp314
-python_impl:
-- cpython
+- 3.13.* *_cp313
 target_platform:
 - osx-64
 zip_keys:
