@@ -63,7 +63,7 @@ requirements:
     - if: cuda_compiler_version != "None"
       then: 
       - __cuda >=${{ cuda_compiler_version }}
-      - ${{ pin_compatible("cuda-version", max_pin="x", min_pin="x") }}
+      - ${{ pin_compatible("cuda-version", upper_bound="x", lower_bound="x") }}
 
 tests:
   - script:
