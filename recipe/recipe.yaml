@@ -3,7 +3,8 @@ schema_version: 1
 context:
   name: "hoomd"
   version: "5.4.0"
-  processor: ${{ "gpu" if linux64 and cuda_compiler_version != "None" else "cpu" }}
+  processor: ${{ "gpu" if cuda_compiler_version != "None" else "cpu" }}
+  number: ${{ 1 }}
 
 package:
   name: ${{ name }}
@@ -16,8 +17,8 @@ source:
     - "fix-python-site-dir.patch"
 
 build:
-  number: 0
-  string: ${{ processor }}_py${{ py }}h${{ PKG_HASH }}_${{ build }}
+  number: ${{ number }}
+  string: ${{ processor }}_py${{ python | version_to_buildstring }}_h${{ hash }}_${{ number }}
   script: bash ${RECIPE_DIR}/build_hoomd.sh ${{ processor }}
   skip: win
   
@@ -36,7 +37,7 @@ requirements:
         - cross-python_${{ target_platform }}     
         - numpy                                  
         - pybind11 >=2.12.0
-    - if: linux64 and cuda_compiler_version != "None"
+    - if: cuda_compiler_version != "None"
       then: ${{ compiler('cuda') }}
 
   host:
@@ -45,9 +46,9 @@ requirements:
     - pybind11 >=2.12.0
     - python
     - pybind11-abi
-    - if: linux64 and cuda_compiler_version != "None"
+    - if: cuda_compiler_version != "None"
       then: 
-      - cuda-version ${{ cuda_compiler_version }}
+      - cuda-version ==${{ cuda_compiler_version }}
       - cuda-cudart-dev
       - cuda-driver-dev
       - cuda-nvrtc-dev
@@ -59,10 +60,10 @@ requirements:
 
   run:
     - python
-    - if: linux64 and cuda_compiler_version != "None"
+    - if: cuda_compiler_version != "None"
       then: 
       - __cuda >=${{ cuda_compiler_version }}
-      - ${{ pin_compatible("cuda-version", max_pin="x", min_pin="x") }}
+      - ${{ pin_compatible("cuda-version", upper_bound="x", lower_bound="x") }}
 
 tests:
   - script:
