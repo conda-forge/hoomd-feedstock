@@ -18,7 +18,7 @@ source:
 
 build:
   number: ${{ number }}
-  string: ${{ processor }}_py${{ py }}_h${{ hash }}_${{ number }}
+  string: ${{ processor }}_py${{ python | version_to_buildstring }}_h${{ hash }}_${{ number }}
   script: bash ${RECIPE_DIR}/build_hoomd.sh ${{ processor }}
   skip: win
   
