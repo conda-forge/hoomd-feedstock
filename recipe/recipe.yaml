@@ -48,7 +48,7 @@ requirements:
     - pybind11-abi
     - if: cuda_compiler_version != "None"
       then: 
-      - cuda-version ${{ cuda_compiler_version }}
+      - cuda-version ==${{ cuda_compiler_version }}
       - cuda-cudart-dev
       - cuda-driver-dev
       - cuda-nvrtc-dev
