@@ -37,7 +37,7 @@ requirements:
         - cross-python_${{ target_platform }}     
         - numpy                                  
         - pybind11 >=2.12.0
-    - if: linux64 and cuda_compiler_version != "None"
+    - if: cuda_compiler_version != "None"
       then: ${{ compiler('cuda') }}
 
   host:
@@ -46,7 +46,7 @@ requirements:
     - pybind11 >=2.12.0
     - python
     - pybind11-abi
-    - if: linux64 and cuda_compiler_version != "None"
+    - if: cuda_compiler_version != "None"
       then: 
       - cuda-version ${{ cuda_compiler_version }}
       - cuda-cudart-dev
@@ -60,7 +60,7 @@ requirements:
 
   run:
     - python
-    - if: linux64 and cuda_compiler_version != "None"
+    - if: cuda_compiler_version != "None"
       then: 
       - __cuda >=${{ cuda_compiler_version }}
       - ${{ pin_compatible("cuda-version", max_pin="x", min_pin="x") }}
