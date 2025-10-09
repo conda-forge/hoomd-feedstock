@@ -16,7 +16,7 @@ source:
     - "fix-python-site-dir.patch"
 
 build:
-  number: 0
+  number: 1 
   string: ${{ processor }}_py${{ py }}h${{ PKG_HASH }}_${{ build }}
   script: bash ${RECIPE_DIR}/build_hoomd.sh ${{ processor }}
   skip: win
