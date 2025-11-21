@@ -2,9 +2,9 @@ schema_version: 1
 
 context:
   name: "hoomd"
-  version: "5.4.0"
+  version: "6.0.0"
   processor: ${{ "gpu" if cuda_compiler_version != "None" else "cpu" }}
-  number: ${{ 1 }}
+  number: 0
 
 package:
   name: ${{ name }}
@@ -12,7 +12,7 @@ package:
 
 source:
   url: https://github.com/glotzerlab/hoomd-blue/releases/download/v${{ version }}/${{ name }}-${{ version }}.tar.gz
-  sha256: 364b62c7288a743f934001bf372960e6b6ee54c5d8dec402fee0f1665e4e067a
+  sha256: 0135161869cdfdccf320a8ee94cc0880cfe2a0ce901015c5766880888761e630
   patches:
     - "fix-python-site-dir.patch"
 
@@ -21,7 +21,7 @@ build:
   string: ${{ processor }}_py${{ python | version_to_buildstring }}_h${{ hash }}_${{ number }}
   script: bash ${RECIPE_DIR}/build_hoomd.sh ${{ processor }}
   skip: win
-  
+
 requirements:
   run_exports:
     - ${{ pin_subpackage('hoomd', upper_bound='x.x.x') }}
@@ -33,9 +33,9 @@ requirements:
     - pkg-config
     - if: build_platform != target_platform
       then:
-        - python                                 
-        - cross-python_${{ target_platform }}     
-        - numpy                                  
+        - python
+        - cross-python_${{ target_platform }}
+        - numpy
         - pybind11 >=2.12.0
     - if: cuda_compiler_version != "None"
       then: ${{ compiler('cuda') }}
@@ -47,23 +47,23 @@ requirements:
     - python
     - pybind11-abi
     - if: cuda_compiler_version != "None"
-      then: 
-      - cuda-version ==${{ cuda_compiler_version }}
-      - cuda-cudart-dev
-      - cuda-driver-dev
-      - cuda-nvrtc-dev
-      - cuda-profiler-api
-      - libcublas-dev
-      - libcufft-dev
-      - libcusolver-dev
-      - libcusparse-dev
+      then:
+        - cuda-version ==${{ cuda_compiler_version }}
+        - cuda-cudart-dev
+        - cuda-driver-dev
+        - cuda-nvrtc-dev
+        - cuda-profiler-api
+        - libcublas-dev
+        - libcufft-dev
+        - libcusolver-dev
+        - libcusparse-dev
 
   run:
     - python
     - if: cuda_compiler_version != "None"
-      then: 
-      - __cuda >=${{ cuda_compiler_version }}
-      - ${{ pin_compatible("cuda-version", upper_bound="x", lower_bound="x") }}
+      then:
+        - __cuda >=${{ cuda_compiler_version }}
+        - ${{ pin_compatible("cuda-version", upper_bound="x", lower_bound="x") }}
 
 tests:
   - script:
@@ -71,7 +71,7 @@ tests:
     requirements:
       run:
         - pytest
-        - rowan  
+        - rowan
 
 
 about:
