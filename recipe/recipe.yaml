@@ -4,7 +4,7 @@ context:
   name: "hoomd"
   version: "7.0.1"
   processor: ${{ "gpu" if cuda_compiler_version != "None" else "cpu" }}
-  number: 0
+  number: 1
 
 package:
   name: ${{ name }}
