@@ -1,3 +1,5 @@
+set -x
+
 mkdir -p build-conda
 cd build-conda
 rm -rf ./*
@@ -28,7 +30,6 @@ cmake ../ \
       -DENABLE_GPU=${CUDA_SUPPORT} ${CUDA_CMAKE_OPTIONS} \
       -DBUILD_TESTING=off \
       -DPLUGINS="" \
-      -DPYTHON_Executable=$PYTHON \
       -DPYTHON_SITE_INSTALL_DIR="lib/python${PY_VER}/site-packages/hoomd" \
       -GNinja
 
