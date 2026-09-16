@@ -4,7 +4,7 @@ context:
   name: "hoomd"
   version: "7.1.2"
   processor: ${{ "gpu" if cuda_compiler_version != "None" else "cpu" }}
-  number: 0
+  number: 1
 
 package:
   name: ${{ name }}
@@ -20,7 +20,10 @@ build:
   number: ${{ number }}
   string: ${{ processor }}_py${{ python | version_to_buildstring }}_h${{ hash }}_${{ number }}
   script: bash ${RECIPE_DIR}/build_hoomd.sh ${{ processor }}
-  skip: win
+  skip: 
+    - win
+    - if: cuda_compiler_version != "None"
+      then: match(cuda_compiler_version, ">=13.0")
 
 requirements:
   run_exports:
@@ -43,6 +46,7 @@ requirements:
   host:
     - eigen
     - numpy
+    - libpython
     - pybind11 >=2.12.0
     - python
     - pybind11-abi
@@ -59,6 +63,7 @@ requirements:
         - libcusparse-dev
 
   run:
+    - libpython
     - python
     - if: cuda_compiler_version != "None"
       then:

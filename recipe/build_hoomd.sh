@@ -1,3 +1,5 @@
+set -x
+
 mkdir -p build-conda
 cd build-conda
 rm -rf ./*
