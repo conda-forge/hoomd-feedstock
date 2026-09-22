@@ -1,7 +1,7 @@
 About hoomd-feedstock
 =====================
 
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/hoomd-feedstock-py315-feedstock/blob/main/LICENSE.txt)
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/hoomd-feedstock/blob/main/LICENSE.txt)
 
 Home: https://glotzerlab.engin.umich.edu/hoomd-blue/
 
@@ -26,8 +26,8 @@ Current build status
 <table><tr>
     <td>GitHub Actions</td>
     <td>
-      <a href="https://github.com/conda-forge/hoomd-feedstock-py315-feedstock/actions/workflows/conda-build.yml">
-        <img src="https://github.com/conda-forge/hoomd-feedstock-py315-feedstock/actions/workflows/conda-build.yml/badge.svg?event=push&branch=main">
+      <a href="https://github.com/conda-forge/hoomd-feedstock/actions/workflows/conda-build.yml">
+        <img src="https://github.com/conda-forge/hoomd-feedstock/actions/workflows/conda-build.yml/badge.svg?event=push&branch=main">
       </a>
     </td>
   </tr>
@@ -37,8 +37,8 @@ Current build status
     <td>
       <details>
         <summary>
-          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=None&branchName=main">
-            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock-py315-feedstock?branchName=main">
+          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=main">
+            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=main">
           </a>
         </summary>
         <table>
@@ -46,71 +46,71 @@ Current build status
           <tbody><tr>
               <td>osx_64_channel_sourcesconda-forgeconda-forgelabelpython_rcpython3.15.____cp315</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=None&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock-py315-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_channel_sourcesconda-forgeconda-forgelabelpython_rcpython3.15.____cp315" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_channel_sourcesconda-forgeconda-forgelabelpython_rcpython3.15.____cp315" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>osx_64_channel_sourcesconda-forgepython3.11.____cpython</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=None&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock-py315-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_channel_sourcesconda-forgepython3.11.____cpython" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_channel_sourcesconda-forgepython3.11.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>osx_64_channel_sourcesconda-forgepython3.12.____cpython</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=None&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock-py315-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_channel_sourcesconda-forgepython3.12.____cpython" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_channel_sourcesconda-forgepython3.12.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>osx_64_channel_sourcesconda-forgepython3.13.____cp313</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=None&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock-py315-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_channel_sourcesconda-forgepython3.13.____cp313" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_channel_sourcesconda-forgepython3.13.____cp313" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>osx_64_channel_sourcesconda-forgepython3.14.____cp314</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=None&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock-py315-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_channel_sourcesconda-forgepython3.14.____cp314" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_channel_sourcesconda-forgepython3.14.____cp314" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>osx_arm64_channel_sourcesconda-forgeconda-forgelabelpython_rcpython3.15.____cp315</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=None&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock-py315-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_channel_sourcesconda-forgeconda-forgelabelpython_rcpython3.15.____cp315" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_channel_sourcesconda-forgeconda-forgelabelpython_rcpython3.15.____cp315" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>osx_arm64_channel_sourcesconda-forgepython3.11.____cpython</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=None&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock-py315-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_channel_sourcesconda-forgepython3.11.____cpython" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_channel_sourcesconda-forgepython3.11.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>osx_arm64_channel_sourcesconda-forgepython3.12.____cpython</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=None&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock-py315-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_channel_sourcesconda-forgepython3.12.____cpython" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_channel_sourcesconda-forgepython3.12.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>osx_arm64_channel_sourcesconda-forgepython3.13.____cp313</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=None&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock-py315-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_channel_sourcesconda-forgepython3.13.____cp313" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_channel_sourcesconda-forgepython3.13.____cp313" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>osx_arm64_channel_sourcesconda-forgepython3.14.____cp314</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=None&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock-py315-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_channel_sourcesconda-forgepython3.14.____cp314" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5507&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hoomd-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_channel_sourcesconda-forgepython3.14.____cp314" alt="variant">
                 </a>
               </td>
             </tr>
@@ -286,8 +286,6 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
-* [@DomFijan](https://github.com/DomFijan/)
-* [@SchoeniPhlippsn](https://github.com/SchoeniPhlippsn/)
 * [@janbridley](https://github.com/janbridley/)
 * [@joaander](https://github.com/joaander/)
 * [@sumitavaumich](https://github.com/sumitavaumich/)
