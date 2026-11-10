@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: "hoomd"
-  version: "7.2.1"
+  version: "7.2.2"
   processor: ${{ "gpu" if cuda_compiler_version != "None" else "cpu" }}
   number: 0
 
@@ -12,7 +12,7 @@ package:
 
 source:
   url: https://github.com/glotzerlab/hoomd-blue/releases/download/v${{ version }}/${{ name }}-${{ version }}.tar.gz
-  sha256: 84d7e88c4cc4767669e28769a801b38f7362a904de987ab116b2fd7747b0641e
+  sha256: 59731ac59ef8ac3b7d9e9f4cb97df5e6d325076e6f1c99d30b7540e01aa5f445
   patches:
     - "fix-python-site-dir.patch"
 
